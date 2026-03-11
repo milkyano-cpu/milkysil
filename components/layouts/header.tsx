@@ -10,8 +10,9 @@ import { cn } from '@/lib/utils'
 const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
-  { href: '/portfolio', label: 'Products' },
-  { href: '/package', label: 'News' },
+  { href: '/products', label: 'Products' },
+  { href: '/industries', label: 'Industries' },
+  { href: '/news', label: 'News' },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -34,16 +35,14 @@ const Header = () => {
         scrolled ? 'bg-[#4A7D6D] shadow-lg py-3' : 'bg-transparent'
       }`}
     >
-      <nav className="w-full h-32 flex items-center justify-between px-50">
-        <Link href="/">
+      <nav className="w-full h-28 flex items-center justify-between px-50">
           <Image
             src="/milkysil-logo.svg"
             priority
             alt="logo"
-            width={367}
-            height={70}
+            width={300}
+            height={100}
           />
-        </Link>
         <ul className="flex h-[52.5px] items-center gap-8 text-primary text-lg font-normal">
           {navLinks.map(({ href, label }) => {
             const isActive = pathname === href

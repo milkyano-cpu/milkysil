@@ -1,5 +1,12 @@
 import Header from "@/components/layouts/header";
 import Hero from "@/components/sections/hero/hero";
+import Featured from "@/components/sections/featured/featured"
+import Categories from "@/components/sections/categories/categories"
+import FeaturedProduct from "@/components/sections/featured-product/featured-product"
+import WhyUs from "@/components/sections/why-us/why-us"
+import Industries from "@/components/sections/industries/industries"
+import CTA from "@/components/sections/cta/cta"
+import Footer from "@/components/layouts/footer"
 import Image from "next/image";
 
 export default function Home() {
@@ -7,6 +14,13 @@ export default function Home() {
     <main className="w-[1920px]">
       <Header/>
       <Hero/>
+      <Featured />
+      <Categories />
+      <FeaturedProduct />
+      <WhyUs />
+      <Industries />
+      <CTA />
+      <Footer />
     </main>
   );
 }
