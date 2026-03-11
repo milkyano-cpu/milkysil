@@ -7,7 +7,6 @@ import WhyUs from "@/components/sections/why-us/why-us"
 import Industries from "@/components/sections/industries/industries"
 import CTA from "@/components/sections/cta/cta"
 import Footer from "@/components/layouts/footer"
-import Image from "next/image";
 
 export default function Home() {
   return (

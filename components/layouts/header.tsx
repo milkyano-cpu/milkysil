@@ -32,7 +32,11 @@ const Header = () => {
   return (
     <header
       className={`w-full z-20 transition-[background-color,box-shadow,padding] duration-500 ease-in-out ${
-        scrolled ? 'bg-[#4A7D6D] shadow-lg py-3' : 'bg-transparent'
+        scrolled ? 
+        // 'bg-[#4A7D6D] shadow-lg py-3' 
+        '' 
+        : 
+        'bg-transparent'
       }`}
     >
       <nav className="w-full h-28 flex items-center justify-between px-50">
