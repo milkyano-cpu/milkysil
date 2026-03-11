@@ -162,7 +162,7 @@ const FeaturedProducts = () => {
 
                         <Link
                           href="/contact"
-                          className="border border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-[#1E3E6D] transition"
+                          className="border border-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
                         >
                           Minta Harga Grosir
                         </Link>

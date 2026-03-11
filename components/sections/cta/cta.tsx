@@ -30,7 +30,7 @@ const CTA = () => {
 
           <Link
             href="/contact"
-            className="inline-block mt-8 bg-[#1E3E6D] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#16325A] transition"
+            className="inline-block mt-8 bg-[#1E3E6D] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
           >
             Minta Penawaran Sekarang
           </Link>
