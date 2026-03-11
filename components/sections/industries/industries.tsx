@@ -3,27 +3,27 @@ import Image from "next/image"
 const industries = [
   {
     title: "Manufaktur",
-    image: "/industry-manufacturing.jpg",
+    image: "/industries1.png",
   },
   {
     title: "Konstruksi & Komposit",
-    image: "/industry-construction.jpg",
+    image: "/industries2.png",
   },
   {
     title: "Fasilitas Pengolahan Air",
-    image: "/industry-water.jpg",
+    image: "/industries3.png",
   },
   {
     title: "Otomotif & Fabrikasi",
-    image: "/industry-automotive.jpg",
+    image: "/industries4.png",
   },
   {
     title: "Cleaning & Manajemen Fasilitas",
-    image: "/industry-cleaning.jpg",
+    image: "/industries5.png",
   },
   {
     title: "Industri Makanan & Pengolahan",
-    image: "/industry-food.jpg",
+    image: "/industries6.png",
   },
 ]
 
@@ -52,27 +52,33 @@ const Industries = () => {
           {industries.map((item, index) => (
             <div
               key={index}
-              className="relative rounded-3xl overflow-hidden group"
+              className="bg-[#E9EEF6] rounded-3xl overflow-hidden"
             >
 
-              {/* Image */}
-              <Image
-                src={item.image}
-                alt={item.title}
-                width={400}
-                height={300}
-                className="w-full h-[220px] object-cover"
-              />
-
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-white/40"></div>
-
               {/* Title */}
-            <div className="absolute top-6 left-1/2 -translate-x-1/2 text-center">
-                <h3 className="text-[#1E3E6D] font-semibold text-lg">
-                    {item.title}
+              <div className="text-center py-6 px-6">
+
+                <h3 className="text-[#1E3E6D] font-semibold text-lg leading-snug">
+                  {item.title}
                 </h3>
-            </div>
+
+              </div>
+
+              {/* Image */}
+              <div className="relative">
+
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  width={400}
+                  height={300}
+                  className="w-full h-[220px] object-cover"
+                />
+
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent"></div>
+
+              </div>
 
             </div>
           ))}

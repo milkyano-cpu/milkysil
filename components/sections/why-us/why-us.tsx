@@ -4,22 +4,22 @@ const reasons = [
   {
     title: "Pasokan Stabil & Terpercaya",
     desc: "Menjamin ketersediaan stok untuk mendukung operasional bisnis Anda.",
-    icon: "/globe.svg",
+    icon: "/sycn-icon.png",
   },
   {
     title: "Produk Terjamin Kualitasnya",
     desc: "Dipilih dan dikelola dengan standar kualitas industri.",
-    icon: "/file.svg",
+    icon: "/checklist-icon.png",
   },
   {
     title: "Harga Kompetitif & Transparan",
     desc: "Struktur harga yang adil untuk pembelian partai besar maupun kerja sama jangka panjang.",
-    icon: "/window.svg",
+    icon: "/balance-icon.png",
   },
   {
     title: "Tim Profesional & Responsif",
     desc: "Siap membantu kebutuhan informasi produk dan konsultasi teknis.",
-    icon: "/next.svg",
+    icon: "/cs-icon.png",
   },
 ]
 
