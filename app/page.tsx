@@ -12,8 +12,10 @@ export default function Home() {
   return (
     <main className="w-full">
       <Header/>
-      <Hero/>
-      <Featured />
+      <div className="relative bg-[#F7F9FC]">
+        <Hero/>
+        <Featured />
+      </div>
       <Categories />
       <FeaturedProduct />
       <WhyUs />
