@@ -25,45 +25,45 @@ const reasons = [
 
 const WhyUs = () => {
   return (
-    <section className="py-28 bg-gradient-to-r from-[#0F4FA8] to-[#1E6BD6] text-white">
+    <section className="py-24 md:py-28 bg-gradient-to-r from-[#0F4FA8] to-[#1E6BD6] text-white">
 
       <div className="max-w-[1200px] mx-auto px-6">
 
         {/* Title */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 md:mb-20">
 
-          <h2 className="text-3xl font-bold">
+          <h2 className="text-2xl md:text-3xl font-bold">
             Mengapa Bermitra dengan Kami?
           </h2>
 
-          <p className="text-white/80 mt-3">
+          <p className="text-white/80 mt-3 max-w-[520px] mx-auto text-sm md:text-base">
             Memberikan solusi bahan kimia yang andal dengan pengalaman dan profesionalisme.
           </p>
 
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
 
           {reasons.map((item, index) => (
             <div
               key={index}
-              className="relative bg-white text-[#1E3E6D] rounded-2xl p-8 text-center"
+              className="relative bg-white text-[#1E3E6D] rounded-2xl p-8 md:p-8 text-center max-w-[320px] mx-auto"
             >
 
               {/* Icon Circle */}
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-20 h-20 bg-white rounded-full shadow flex items-center justify-center">
+              <div className="absolute -top-10 md:-top-10 left-1/2 -translate-x-1/2 w-16 h-16 md:w-20 md:h-20 bg-white rounded-full shadow flex items-center justify-center">
 
                 <Image
                   src={item.icon}
                   alt={item.title}
-                  width={36}
-                  height={36}
+                  width={28}
+                  height={28}
                 />
 
               </div>
 
-              <h3 className="font-semibold mt-8 mb-3">
+              <h3 className="font-semibold mt-6 mb-3 text-sm md:text-base">
                 {item.title}
               </h3>
 
