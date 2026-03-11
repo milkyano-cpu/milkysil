@@ -59,6 +59,11 @@ const smallProducts = [
 const FeaturedProducts = () => {
 
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+  const [smallEmblaRef] = useEmblaCarousel({
+    dragFree: true,
+    containScroll: "trimSnaps"
+  })
+
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
@@ -93,7 +98,7 @@ const FeaturedProducts = () => {
 
         </div>
 
-        {/* CAROUSEL */}
+        {/* MAIN CAROUSEL */}
         <div className="overflow-hidden" ref={emblaRef}>
 
           <div className="flex">
@@ -202,44 +207,48 @@ const FeaturedProducts = () => {
 
         </div>
 
-        {/* SMALL PRODUCT CARDS */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+        {/* SMALL PRODUCTS - SWIPE MOBILE */}
+        <div className="mt-12 overflow-hidden" ref={smallEmblaRef}>
 
-          {smallProducts.map((item, index) => (
+          <div className="flex gap-6 md:grid md:grid-cols-3">
 
-            <div
-              key={index}
-              className="bg-white rounded-xl border border-gray-200 p-6 flex items-center gap-5 hover:shadow-lg transition"
-            >
+            {smallProducts.map((item, index) => (
 
-              {/* IMAGE */}
-              <div className="bg-yellow-400 rounded-lg p-3">
+              <div
+                key={index}
+                className="flex-[0_0_80%] md:flex-none bg-white rounded-xl border border-gray-200 p-6 flex items-center gap-5 hover:shadow-lg transition"
+              >
 
-                <Image
-                  src={item.image}
-                  alt={item.name}
-                  width={70}
-                  height={70}
-                />
+                {/* IMAGE */}
+                <div className="bg-yellow-400 rounded-lg p-3">
+
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    width={70}
+                    height={70}
+                  />
+
+                </div>
+
+                {/* TEXT */}
+                <div>
+
+                  <h4 className="font-semibold text-[#1E3E6D]">
+                    {item.name}
+                  </h4>
+
+                  <p className="text-sm text-gray-500 mt-2">
+                    {item.desc}
+                  </p>
+
+                </div>
 
               </div>
 
-              {/* TEXT */}
-              <div>
+            ))}
 
-                <h4 className="font-semibold text-[#1E3E6D]">
-                  {item.name}
-                </h4>
-
-                <p className="text-sm text-gray-500 mt-2">
-                  {item.desc}
-                </p>
-
-              </div>
-
-            </div>
-
-          ))}
+          </div>
 
         </div>
 
