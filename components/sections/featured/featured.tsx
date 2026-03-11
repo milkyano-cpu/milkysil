@@ -9,7 +9,7 @@ const features = [
 
 const Features = () => {
     return (
-        <div className="relative -mt-12 z-10">
+        <div className="bg-[#F7F9FC] relative -mt-12 z-10">
 
         <div className="max-w-[1100px] mx-auto px-6">
 

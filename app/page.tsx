@@ -10,7 +10,7 @@ import Footer from "@/components/layouts/footer"
 
 export default function Home() {
   return (
-    <main className="w-[1920px]">
+    <main className="w-full">
       <Header/>
       <Hero/>
       <Featured />
