@@ -38,11 +38,31 @@ const products = [
   },
 ]
 
+const smallProducts = [
+  {
+    name: "MilkyClean Handsoap Lemon",
+    desc: "Lorem ipsum dolor sit amet consectetur.",
+    image: "/product-small.png",
+  },
+  {
+    name: "MilkyClean Handsoap Lemon",
+    desc: "Lorem ipsum dolor sit amet consectetur.",
+    image: "/product-small.png",
+  },
+  {
+    name: "MilkyClean Handsoap Lemon",
+    desc: "Lorem ipsum dolor sit amet consectetur.",
+    image: "/product-small.png",
+  },
+]
+
 const FeaturedProducts = () => {
+
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   useEffect(() => {
+
     if (!emblaApi) return
 
     const onSelect = () => {
@@ -55,12 +75,14 @@ const FeaturedProducts = () => {
   }, [emblaApi])
 
   return (
+
     <section className="py-24 bg-[#F7F9FC]">
 
       <div className="max-w-[1200px] mx-auto px-6">
 
-        {/* Title */}
+        {/* TITLE */}
         <div className="text-center mb-16">
+
           <h2 className="text-3xl font-bold text-[#1E3E6D]">
             Produk Unggulan
           </h2>
@@ -68,49 +90,53 @@ const FeaturedProducts = () => {
           <p className="text-gray-500 mt-3">
             Produk andalan kami dengan performa terbaik.
           </p>
+
         </div>
 
-        {/* Carousel */}
+        {/* CAROUSEL */}
         <div className="overflow-hidden" ref={emblaRef}>
 
           <div className="flex">
 
             {products.map((item, index) => (
+
               <div key={index} className="flex-[0_0_100%]">
 
                 <div className="relative rounded-3xl overflow-hidden">
 
-                  {/* Background Banner */}
+                  {/* IMAGE */}
                   <Image
                     src={item.image}
                     alt={item.name}
                     width={1200}
-                    height={500}
+                    height={420}
                     className="w-full h-[420px] object-cover"
                   />
 
-                  {/* Content */}
-                  <div className="absolute inset-y-0 right-0 w-[45%] flex items-center p-12 text-white">
+                  {/* GRADIENT */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0F3F8F]/90" />
+
+                  {/* CONTENT */}
+                  <div className="absolute inset-y-0 right-0 w-[50%] flex items-center p-12 text-white">
 
                     <div>
 
-                      {/* Title */}
                       <h3 className="text-2xl font-semibold mb-4">
                         {item.name}
                       </h3>
 
-                      {/* Description */}
                       <p className="text-white/90 mb-6 leading-relaxed">
                         {item.desc}
                       </p>
 
-                      {/* Features */}
+                      {/* FEATURES */}
                       <ul className="space-y-3 mb-8">
 
                         {item.features.map((feature, i) => (
+
                           <li key={i} className="flex items-center gap-3">
 
-                            <span className="w-7 h-7 bg-white/20 border border-white/40 rounded-full flex items-center justify-center text-xs">
+                            <span className="w-6 h-6 border border-white rounded-full flex items-center justify-center text-xs">
                               ✓
                             </span>
 
@@ -119,23 +145,24 @@ const FeaturedProducts = () => {
                             </span>
 
                           </li>
+
                         ))}
 
                       </ul>
 
-                      {/* Buttons */}
+                      {/* BUTTONS */}
                       <div className="flex gap-4">
 
                         <Link
                           href="/products"
-                          className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium transition duration-300 hover:bg-[#1E3E6D] hover:text-white"
+                          className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition"
                         >
                           Lihat Detail Produk
                         </Link>
 
                         <Link
                           href="/contact"
-                          className="border border-white px-6 py-3 rounded-lg font-medium transition duration-300 hover:bg-white hover:text-[#1E3E6D]"
+                          className="border border-white px-6 py-3 rounded-lg font-medium hover:bg-white hover:text-[#1E3E6D] transition"
                         >
                           Minta Harga Grosir
                         </Link>
@@ -146,28 +173,72 @@ const FeaturedProducts = () => {
 
                   </div>
 
+                  {/* DOTS */}
+                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+
+                    {products.map((_, index) => (
+
+                      <button
+                        key={index}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                        className={`w-2.5 h-2.5 rounded-full transition ${
+                          selectedIndex === index
+                            ? "bg-white scale-125"
+                            : "bg-white/40"
+                        }`}
+                      />
+
+                    ))}
+
+                  </div>
+
                 </div>
 
               </div>
+
             ))}
 
           </div>
 
         </div>
 
-        {/* DOT INDICATOR */}
-        <div className="flex justify-center gap-3 mt-6">
+        {/* SMALL PRODUCT CARDS */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
 
-          {products.map((_, index) => (
-            <button
+          {smallProducts.map((item, index) => (
+
+            <div
               key={index}
-              onClick={() => emblaApi?.scrollTo(index)}
-              className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-                selectedIndex === index
-                  ? "bg-[#1E3E6D] scale-125"
-                  : "bg-gray-300"
-              }`}
-            />
+              className="bg-white rounded-xl border border-gray-200 p-6 flex items-center gap-5 hover:shadow-lg transition"
+            >
+
+              {/* IMAGE */}
+              <div className="bg-yellow-400 rounded-lg p-3">
+
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  width={70}
+                  height={70}
+                />
+
+              </div>
+
+              {/* TEXT */}
+              <div>
+
+                <h4 className="font-semibold text-[#1E3E6D]">
+                  {item.name}
+                </h4>
+
+                <p className="text-sm text-gray-500 mt-2">
+                  {item.desc}
+                </p>
+
+              </div>
+
+            </div>
+
           ))}
 
         </div>
