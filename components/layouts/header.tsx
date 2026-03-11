@@ -6,6 +6,13 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { buttonVariants } from '../ui/button'
 import { cn } from '@/lib/utils'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from '@/components/ui/sheet'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -18,6 +25,7 @@ const navLinks = [
 
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false)
+  const [open, setOpen] = useState<boolean>(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -29,25 +37,32 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    setOpen(false)
+  }, [pathname])
+
   return (
     <header
       className={`w-full z-20 transition-[background-color,box-shadow,padding] duration-500 ease-in-out ${
-        scrolled ? 
-        // 'bg-[#4A7D6D] shadow-lg py-3' 
-        '' 
-        : 
+        scrolled ?
+        // 'bg-[#4A7D6D] shadow-lg py-3'
+        ''
+        :
         'bg-transparent'
       }`}
     >
-      <nav className="w-full h-28 flex items-center justify-between px-50">
-          <Image
-            src="/milkysil-logo.svg"
-            priority
-            alt="logo"
-            width={300}
-            height={100}
-          />
-        <ul className="flex h-[52.5px] items-center gap-8 text-primary text-lg font-normal">
+      <nav className="w-full h-[87px] md:h-28 flex items-center justify-between px-9 md:px-50">
+        <Image
+          src="/milkysil-logo.svg"
+          priority
+          alt="logo"
+          width={300}
+          height={100}
+          className="w-[180px] md:w-[300px] h-auto"
+        />
+
+        {/* Desktop nav */}
+        <ul className="hidden md:flex h-[52.5px] items-center gap-8 text-primary text-lg font-normal">
           {navLinks.map(({ href, label }) => {
             const isActive = pathname === href
 
@@ -81,6 +96,68 @@ const Header = () => {
             </Link>
           </li>
         </ul>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden"
+          onClick={() => setOpen(true)}
+          aria-label="Open menu"
+        >
+          <Image
+            src="/iconamoon_menu-burger-horizontal-fill.svg"
+            alt="Menu"
+            width={24}
+            height={24}
+          />
+        </button>
+
+        {/* Mobile slide-out menu */}
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetContent side="right" className="flex flex-col">
+            <SheetHeader>
+              <SheetTitle className="sr-only">Navigation</SheetTitle>
+              <Image
+                src="/milkysil-logo.svg"
+                alt="logo"
+                width={180}
+                height={60}
+                className="h-auto"
+              />
+            </SheetHeader>
+            <nav className="flex flex-col gap-2 px-4 mt-4">
+              {navLinks.map(({ href, label }) => {
+                const isActive = pathname === href
+
+                return (
+                  <SheetClose asChild key={href}>
+                    <Link
+                      href={href}
+                      className={cn(
+                        'py-3 text-lg text-primary transition-colors hover:text-blue border-b border-gray-100',
+                        isActive && 'font-semibold text-blue'
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </SheetClose>
+                )
+              })}
+            </nav>
+            <div className="mt-auto p-4">
+              <SheetClose asChild>
+                <Link
+                  href="/contact"
+                  className={cn(
+                    buttonVariants({ variant: 'cta', size: 'cta' }),
+                    'w-full'
+                  )}
+                >
+                  Request a Quote
+                </Link>
+              </SheetClose>
+            </div>
+          </SheetContent>
+        </Sheet>
       </nav>
     </header>
   )
