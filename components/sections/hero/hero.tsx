@@ -11,38 +11,44 @@ const slides = [
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Menyediakan solusi bahan kimia berkualitas tinggi untuk kebutuhan manufaktur, pengolahan air, dan berbagai aplikasi industri.",
-    image: "/hero-image.png",
+    image: "/heroo1.webp",
     mobileImage: "/hero-image-mobile.png",
+    bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Kami menyediakan berbagai bahan kimia industri dengan kualitas terbaik dan distribusi terpercaya di seluruh Indonesia.",
     image: "/hero-image2.png",
     mobileImage: "/hero-image-mobile.png",
+    bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
     image: "/hero-image3.png",
     mobileImage: "/hero-image-mobile.png",
+    bgColor: "#E8F0FC",
   },
-    {
+  {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Kami menyediakan berbagai bahan kimia industri dengan kualitas terbaik dan distribusi terpercaya di seluruh Indonesia.",
     image: "/hero-image4.png",
     mobileImage: "/hero-image-mobile.png",
+    bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
     image: "/hero-image5.png",
     mobileImage: "/hero-image-mobile.png",
+    bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
     image: "/hero-image6.png",
     mobileImage: "/hero-image-mobile.png",
+    bgColor: "#E8F0FC",
   },
 ]
 
@@ -67,7 +73,10 @@ const Hero = () => {
   }, [emblaApi])
 
   return (
-    <section className="relative w-full min-h-dvh md:min-h-0 md:h-[741px] bg-[#E8F0FC] overflow-hidden pb-42 md:pb-0">
+    <section
+      className="relative w-full min-h-dvh md:min-h-0 md:h-[741px] overflow-hidden pb-42 md:pb-0 transition-colors duration-700 ease-in-out"
+      style={{ backgroundColor: slides[selectedIndex].bgColor }}
+    >
 
       {/* Carousel */}
       <div className="overflow-hidden h-full" ref={emblaRef}>
@@ -89,7 +98,7 @@ const Hero = () => {
                     className="w-full h-auto object-cover"
                     priority
                   />
-                    <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#E8F0FC]" />
+                    <div className="absolute bottom-0 left-0 w-full h-24" style={{ background: `linear-gradient(to bottom, transparent, ${slide.bgColor})` }} />
                 </div>
 
                 {/* LEFT CONTENT */}
@@ -115,15 +124,18 @@ const Hero = () => {
               </div>
 
               {/* RIGHT IMAGE (Desktop) */}
-              <Image
-                src={slide.image}
-                alt="Produk bahan kimia industri"
-                width={800}
-                height={741}
-                className="hidden md:block absolute inset-0 w-full h-full object-cover "
-                priority
-              />
-
+              <div className="hidden md:block absolute right-0 bottom-0 h-full w-auto">
+                <Image
+                  src={slide.image}
+                  alt="Produk bahan kimia industri"
+                  width={1200}
+                  height={800}
+                  className="h-full w-auto object-contain"
+                  priority
+                />
+                <div className="absolute inset-0 w-1/3" style={{ background: `linear-gradient(to right, ${slide.bgColor}, transparent)` }} />
+                <div className="absolute bottom-0 left-0 right-0 h-1/3" style={{ background: `linear-gradient(to top, ${slide.bgColor}, transparent)` }} />
+              </div>
             </div>
           ))}
 

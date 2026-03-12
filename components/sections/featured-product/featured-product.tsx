@@ -9,7 +9,7 @@ const products = [
   {
     name: "MilkyClean Porcelain Cleaner",
     desc: "Solusi pembersih berkinerja tinggi yang diformulasikan untuk mengembalikan kilap dan menghilangkan noda membandel pada permukaan keramik dan porselen.",
-    image: "/product.png",
+    image: "/product-featured1.png",
     features: [
       "Mengangkat Noda Membandel",
       "Aman untuk Permukaan Porselen",
@@ -19,7 +19,7 @@ const products = [
   {
     name: "MilkyClean Floor Cleaner",
     desc: "Membersihkan noda dan menjaga kilap lantai.",
-    image: "/product.png",
+    image: "/product-featured2.png",
     features: [
       "Membersihkan Noda Membandel",
       "Aman untuk Semua Jenis Lantai",
@@ -29,11 +29,41 @@ const products = [
   {
     name: "MilkyClean Glass Cleaner",
     desc: "Membersihkan kaca tanpa meninggalkan noda.",
-    image: "/product.png",
+    image: "/product-featured3.png",
     features: [
       "Tidak Meninggalkan Bekas",
       "Cepat Kering",
       "Cocok untuk Kaca & Cermin",
+    ],
+  },
+  {
+    name: "MilkyClean Bathroom Cleaner",
+    desc: "Pembersih kamar mandi yang efektif menghilangkan kerak dan jamur.",
+    image: "/product-featured4.png",
+    features: [
+      "Menghilangkan Kerak & Jamur",
+      "Aroma Segar & Menyegarkan",
+      "Aman untuk Semua Permukaan Kamar Mandi",
+    ],
+  },
+  {
+    name: "MilkyClean Multi-Purpose Cleaner",
+    desc: "Pembersih serbaguna untuk berbagai permukaan rumah dan industri.",
+    image: "/product-featured5.png",
+    features: [
+      "Serbaguna untuk Berbagai Permukaan",
+      "Formula Ramah Lingkungan",
+      "Efektif Menghilangkan Minyak & Kotoran",
+    ],
+  },
+  {
+    name: "MilkyClean Toilet Cleaner",
+    desc: "Pembersih toilet dengan daya bersih maksimal dan wangi tahan lama.",
+    image: "/product-featured6.png",
+    features: [
+      "Daya Bersih Maksimal",
+      "Membunuh Kuman & Bakteri",
+      "Wangi Tahan Lama",
     ],
   },
 ]
@@ -104,7 +134,8 @@ const FeaturedProducts = () => {
         </div>
 
         {/* MAIN CAROUSEL */}
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div className="relative">
+        <div className="overflow-hidden rounded-3xl" ref={emblaRef}>
 
           <div className="flex">
 
@@ -112,7 +143,7 @@ const FeaturedProducts = () => {
 
               <div key={index} className="flex-[0_0_100%]">
 
-                <div className="relative rounded-3xl overflow-hidden">
+                <div className="relative overflow-hidden">
 
                   {/* DESKTOP IMAGE */}
                   <Image
@@ -132,24 +163,6 @@ const FeaturedProducts = () => {
                     className="md:hidden w-full h-auto object-contain"
                   />
 
-                  {/* MOBILE DOT */}
-                  <div className="md:hidden absolute bottom-[600px] left-1/2 -translate-x-1/2 flex gap-3">
-
-                    {products.map((_, index) => (
-
-                      <button
-                        key={index}
-                        onClick={() => emblaApi?.scrollTo(index)}
-                        className={`w-2.5 h-2.5 rounded-full transition ${
-                          selectedIndex === index
-                            ? "bg-white scale-125"
-                            : "bg-white/40"
-                        }`}
-                      />
-
-                    ))}
-
-                  </div>
 
                   {/* DESKTOP GRADIENT */}
                   <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-[#0F3F8F]/90" />
@@ -259,24 +272,6 @@ const FeaturedProducts = () => {
 
                   </div>
 
-                  {/* DESKTOP DOT */}
-                  <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 gap-3">
-
-                    {products.map((_, index) => (
-
-                      <button
-                        key={index}
-                        onClick={() => emblaApi?.scrollTo(index)}
-                        className={`w-2.5 h-2.5 rounded-full transition ${
-                          selectedIndex === index
-                            ? "bg-white scale-125"
-                            : "bg-white/40"
-                        }`}
-                      />
-
-                    ))}
-
-                  </div>
 
                 </div>
 
@@ -286,6 +281,22 @@ const FeaturedProducts = () => {
 
           </div>
 
+        </div>
+
+        {/* DOTS - overlaid on carousel but outside sliding container */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+          {products.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi?.scrollTo(index)}
+              className={`w-2.5 h-2.5 rounded-full transition ${
+                selectedIndex === index
+                  ? "bg-white scale-125"
+                  : "bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
         </div>
 
         {/* SMALL PRODUCTS */}
