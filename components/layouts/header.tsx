@@ -18,9 +18,8 @@ const navLinks = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About Us' },
   { href: '/products', label: 'Products' },
-  { href: '/industries', label: 'Industries' },
-  { href: '/news', label: 'News' },
-  { href: '/contact', label: 'Contact' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact Us' },
 ]
 
 const Header = () => {
@@ -37,9 +36,9 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    setOpen(false)
-  }, [pathname])
+  // useEffect(() => {
+  //   setOpen(false)
+  // }, [pathname])
 
   return (
     <header
@@ -58,7 +57,7 @@ const Header = () => {
           alt="logo"
           width={300}
           height={100}
-          className="w-[180px] md:w-[300px] h-auto"
+          className="w-[200px] md:w-[320px] h-auto"
         />
 
         {/* Desktop nav */}
@@ -119,8 +118,8 @@ const Header = () => {
               <Image
                 src="/milkysil-logo.svg"
                 alt="logo"
-                width={180}
-                height={60}
+                width={200}
+                height={100}
                 className="h-auto"
               />
             </SheetHeader>

@@ -132,7 +132,6 @@
     @apply font-sans;
   }
 
-  /* hide scrollbar */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -141,4 +140,13 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  .embla {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+}
 }

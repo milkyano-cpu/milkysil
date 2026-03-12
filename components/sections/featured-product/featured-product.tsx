@@ -58,7 +58,12 @@ const smallProducts = [
 
 const FeaturedProducts = () => {
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true })
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    containScroll: "trimSnaps",
+    dragFree: false
+  })
   const [smallEmblaRef] = useEmblaCarousel({
     dragFree: true,
     containScroll: "trimSnaps"
