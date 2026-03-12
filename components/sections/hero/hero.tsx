@@ -17,13 +17,31 @@ const slides = [
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Kami menyediakan berbagai bahan kimia industri dengan kualitas terbaik dan distribusi terpercaya di seluruh Indonesia.",
-    image: "/hero-image.png",
+    image: "/hero-image2.png",
     mobileImage: "/hero-image-mobile.png",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
-    image: "/hero-image.png",
+    image: "/hero-image3.png",
+    mobileImage: "/hero-image-mobile.png",
+  },
+    {
+    title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
+    desc: "Kami menyediakan berbagai bahan kimia industri dengan kualitas terbaik dan distribusi terpercaya di seluruh Indonesia.",
+    image: "/hero-image4.png",
+    mobileImage: "/hero-image-mobile.png",
+  },
+  {
+    title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
+    desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
+    image: "/hero-image5.png",
+    mobileImage: "/hero-image-mobile.png",
+  },
+  {
+    title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
+    desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
+    image: "/hero-image6.png",
     mobileImage: "/hero-image-mobile.png",
   },
 ]
@@ -102,7 +120,7 @@ const Hero = () => {
                 alt="Produk bahan kimia industri"
                 width={800}
                 height={741}
-                className="hidden md:block absolute right-0 top-0 h-full w-auto object-cover"
+                className="hidden md:block absolute inset-0 w-full h-full object-cover "
                 priority
               />
 
