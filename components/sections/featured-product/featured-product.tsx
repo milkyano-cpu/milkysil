@@ -38,23 +38,23 @@ const products = [
   },
 ]
 
-const smallProducts = [
-  {
-    name: "MilkyClean Handsoap Lemon",
-    desc: "Lorem ipsum dolor sit amet consectetur.",
-    image: "/product-small.png",
-  },
-  {
-    name: "MilkyClean Handsoap Lemon",
-    desc: "Lorem ipsum dolor sit amet consectetur.",
-    image: "/product-small.png",
-  },
-  {
-    name: "MilkyClean Handsoap Lemon",
-    desc: "Lorem ipsum dolor sit amet consectetur.",
-    image: "/product-small.png",
-  },
-]
+// const smallProducts = [
+//   {
+//     name: "MilkyClean Handsoap Lemon",
+//     desc: "Lorem ipsum dolor sit amet consectetur.",
+//     image: "/product-small.png",
+//   },
+//   {
+//     name: "MilkyClean Handsoap Lemon",
+//     desc: "Lorem ipsum dolor sit amet consectetur.",
+//     image: "/product-small.png",
+//   },
+//   {
+//     name: "MilkyClean Handsoap Lemon",
+//     desc: "Lorem ipsum dolor sit amet consectetur.",
+//     image: "/product-small.png",
+//   },
+// ]
 
 const FeaturedProducts = () => {
 
@@ -64,10 +64,10 @@ const FeaturedProducts = () => {
     containScroll: "trimSnaps",
     dragFree: false
   })
-  const [smallEmblaRef] = useEmblaCarousel({
-    dragFree: true,
-    containScroll: "trimSnaps"
-  })
+  // const [smallEmblaRef] = useEmblaCarousel({
+  //   dragFree: true,
+  //   containScroll: "trimSnaps"
+  // })
 
   const [selectedIndex, setSelectedIndex] = useState(0)
 
@@ -289,7 +289,7 @@ const FeaturedProducts = () => {
         </div>
 
         {/* SMALL PRODUCTS */}
-        <div className="mt-12 overflow-hidden" ref={smallEmblaRef}>
+        {/* <div className="mt-12 overflow-hidden" ref={smallEmblaRef}>
 
           <div className="flex gap-6 md:grid md:grid-cols-3">
 
@@ -329,7 +329,7 @@ const FeaturedProducts = () => {
 
           </div>
 
-        </div>
+        </div> */}
 
       </div>
 
