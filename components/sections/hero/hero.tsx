@@ -31,9 +31,9 @@ const slides = [
 const Hero = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
-    containScroll: "trimSnaps",
-    dragFree: false,
-    duration: 25
+    align: "center",
+    skipSnaps: false,
+    dragFree: true
   })
   const [selectedIndex, setSelectedIndex] = useState(0)
 
