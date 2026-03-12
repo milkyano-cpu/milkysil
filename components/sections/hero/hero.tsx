@@ -33,7 +33,7 @@ const Hero = () => {
     loop: true,
     align: "center",
     skipSnaps: false,
-    dragFree: true
+    dragFree: false
   })
   const [selectedIndex, setSelectedIndex] = useState(0)
 

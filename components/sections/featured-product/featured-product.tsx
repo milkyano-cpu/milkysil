@@ -62,7 +62,7 @@ const FeaturedProducts = () => {
     loop: true,
     align: "center",
     skipSnaps: false,
-    dragFree: true
+    dragFree: false
   })
   // const [smallEmblaRef] = useEmblaCarousel({
   //   dragFree: true,
