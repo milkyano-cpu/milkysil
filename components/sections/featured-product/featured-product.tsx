@@ -81,7 +81,7 @@ const FeaturedProducts = () => {
 
   return (
 
-    <section className="py-24 bg-[#F7F9FC]">
+    <section className="pt-10 pb-24 bg-[#F7F9FC]">
 
       <div className="max-w-[1200px] mx-auto px-6">
 
@@ -109,20 +109,98 @@ const FeaturedProducts = () => {
 
                 <div className="relative rounded-3xl overflow-hidden">
 
-                  {/* IMAGE */}
+                  {/* DESKTOP IMAGE */}
                   <Image
                     src={item.image}
                     alt={item.name}
                     width={1200}
                     height={420}
-                    className="w-full h-[420px] object-cover"
+                    className="hidden md:block w-full h-[420px] object-cover"
                   />
 
-                  {/* GRADIENT */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0F3F8F]/90" />
+                  {/* MOBILE IMAGE */}
+                  <Image
+                    src="/product-mobile.png"
+                    alt={item.name}
+                    width={420}
+                    height={900}
+                    className="md:hidden w-full h-auto object-contain"
+                  />
 
-                  {/* CONTENT */}
-                  <div className="absolute inset-y-0 right-0 w-[50%] flex items-center p-12 text-white">
+                  {/* MOBILE DOT */}
+                  <div className="md:hidden absolute bottom-[600px] left-1/2 -translate-x-1/2 flex gap-3">
+
+                    {products.map((_, index) => (
+
+                      <button
+                        key={index}
+                        onClick={() => emblaApi?.scrollTo(index)}
+                        className={`w-2.5 h-2.5 rounded-full transition ${
+                          selectedIndex === index
+                            ? "bg-white scale-125"
+                            : "bg-white/40"
+                        }`}
+                      />
+
+                    ))}
+
+                  </div>
+
+                  {/* DESKTOP GRADIENT */}
+                  <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-[#0F3F8F]/90" />
+
+                  {/* MOBILE CONTENT */}
+                  <div className="md:hidden absolute bottom-[100px] left-0 w-full px-6 text-white text-center">
+                    <h3 className="text-xl font-semibold mb-4">
+                      {item.name}
+                    </h3>
+
+                    <p className="text-white/90 mb-6 leading-relaxed text-sm">
+                      {item.desc}
+                    </p>
+
+                    <ul className="space-y-3 mb-8 max-w-[280px] mx-auto">
+
+                      {item.features.map((feature, i) => (
+
+                        <li key={i} className="flex items-start gap-3 text-left">
+
+                          <span className="w-6 h-6 border border-white rounded-full flex items-center justify-center text-xs shrink-0 mt-[2px]">
+                            ✓
+                          </span>
+
+                          <span className="text-sm text-white leading-relaxed">
+                            {feature}
+                          </span>
+
+                        </li>
+
+                      ))}
+
+                    </ul>
+
+                    <div className="flex flex-col gap-4">
+
+                      <Link
+                        href="/products"
+                        className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium"
+                      >
+                        Lihat Detail Produk
+                      </Link>
+
+                      <Link
+                        href="/contact"
+                        className="border border-white px-6 py-3 rounded-lg font-medium"
+                      >
+                        Minta Harga Grosir
+                      </Link>
+
+                    </div>
+
+                  </div>
+
+                  {/* DESKTOP CONTENT */}
+                  <div className="hidden md:flex absolute inset-y-0 right-0 w-[50%] items-center p-12 text-white">
 
                     <div>
 
@@ -134,7 +212,6 @@ const FeaturedProducts = () => {
                         {item.desc}
                       </p>
 
-                      {/* FEATURES */}
                       <ul className="space-y-3 mb-8">
 
                         {item.features.map((feature, i) => (
@@ -155,19 +232,18 @@ const FeaturedProducts = () => {
 
                       </ul>
 
-                      {/* BUTTONS */}
                       <div className="flex gap-4">
 
                         <Link
                           href="/products"
-                          className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition"
+                          className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium"
                         >
                           Lihat Detail Produk
                         </Link>
 
                         <Link
                           href="/contact"
-                          className="border border-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
+                          className="border border-white px-6 py-3 rounded-lg font-medium"
                         >
                           Minta Harga Grosir
                         </Link>
@@ -178,8 +254,8 @@ const FeaturedProducts = () => {
 
                   </div>
 
-                  {/* DOTS */}
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
+                  {/* DESKTOP DOT */}
+                  <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 gap-3">
 
                     {products.map((_, index) => (
 
@@ -207,7 +283,7 @@ const FeaturedProducts = () => {
 
         </div>
 
-        {/* SMALL PRODUCTS - SWIPE MOBILE */}
+        {/* SMALL PRODUCTS */}
         <div className="mt-12 overflow-hidden" ref={smallEmblaRef}>
 
           <div className="flex gap-6 md:grid md:grid-cols-3">
@@ -219,7 +295,6 @@ const FeaturedProducts = () => {
                 className="flex-[0_0_80%] md:flex-none bg-white rounded-xl border border-gray-200 p-6 flex items-center gap-5 hover:shadow-lg transition"
               >
 
-                {/* IMAGE */}
                 <div className="bg-yellow-400 rounded-lg p-3">
 
                   <Image
@@ -231,7 +306,6 @@ const FeaturedProducts = () => {
 
                 </div>
 
-                {/* TEXT */}
                 <div>
 
                   <h4 className="font-semibold text-[#1E3E6D]">

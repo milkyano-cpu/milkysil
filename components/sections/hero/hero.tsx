@@ -66,7 +66,7 @@ const Hero = () => {
                     className="w-full h-auto object-cover"
                     priority
                   />
-                  <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#E8F0FC]" />
+                    <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#E8F0FC]" />
                 </div>
 
                 {/* LEFT CONTENT */}

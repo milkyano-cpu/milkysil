@@ -29,54 +29,51 @@ const industries = [
 
 const Industries = () => {
   return (
-    <section className="py-24 bg-[#F7F9FC]">
+    <section className="py-20 md:py-24 bg-[#F7F9FC]">
 
       <div className="max-w-[1200px] mx-auto px-6">
 
         {/* Title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
 
-          <h2 className="text-3xl font-bold text-[#1E3E6D]">
+          <h2 className="text-2xl md:text-3xl font-bold text-[#1E3E6D]">
             Industri yang Kami Layani
           </h2>
 
-          <p className="text-gray-500 mt-3">
+          <p className="text-gray-500 mt-3 max-w-[600px] mx-auto">
             Mendukung berbagai sektor industri dengan pasokan bahan kimia yang andal.
           </p>
 
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-3 gap-8">
+        {/* Cards */}
+        <div className="flex md:grid md:grid-cols-3 gap-6 md:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-4 scrollbar-hide">
 
           {industries.map((item, index) => (
             <div
               key={index}
-              className="bg-[#E9EEF6] rounded-3xl overflow-hidden"
+              className="bg-[#E9EEF6] rounded-3xl overflow-hidden min-w-[260px] md:min-w-0 snap-start"
             >
 
-              {/* Title */}
-              <div className="text-center py-6 px-6">
-
-                <h3 className="text-[#1E3E6D] font-semibold text-lg leading-snug">
-                  {item.title}
-                </h3>
-
-              </div>
-
               {/* Image */}
-              <div className="relative">
-
+              <div className="relative h-[268px] md:h-auto">
+                
                 <Image
                   src={item.image}
                   alt={item.title}
                   width={400}
                   height={300}
-                  className="w-full h-[220px] object-cover"
+                  className="object-cover"
                 />
 
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-b from-white/40 to-transparent"></div>
+                {/* Blend Gradient */}
+                <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[#E9EEF6]/70 to-transparent"></div>
+                
+                <div className="absolute inset-0 flex items-start justify-center text-center pt-10 px-6">
+                  <h3 className="text-[#1E3E6D] font-semibold text-base md:text-lg leading-snug">
+                    {item.title}
+                  </h3>
+                </div>
 
               </div>
 
