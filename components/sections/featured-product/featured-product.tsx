@@ -9,7 +9,8 @@ const products = [
   {
     name: "MilkyClean Porcelain Cleaner",
     desc: "Solusi pembersih berkinerja tinggi yang diformulasikan untuk mengembalikan kilap dan menghilangkan noda membandel pada permukaan keramik dan porselen.",
-    image: "/product-featured1.png",
+    image: "/product.png",
+    mobileImage: "/product-mobile.png",
     features: [
       "Mengangkat Noda Membandel",
       "Aman untuk Permukaan Porselen",
@@ -19,7 +20,8 @@ const products = [
   {
     name: "MilkyClean Floor Cleaner",
     desc: "Membersihkan noda dan menjaga kilap lantai.",
-    image: "/product-featured2.png",
+    image: "/product-featured1.png",
+    mobileImage: "/product-mobile2.png",
     features: [
       "Membersihkan Noda Membandel",
       "Aman untuk Semua Jenis Lantai",
@@ -29,7 +31,8 @@ const products = [
   {
     name: "MilkyClean Glass Cleaner",
     desc: "Membersihkan kaca tanpa meninggalkan noda.",
-    image: "/product-featured3.png",
+    image: "/product-featured2.png",
+    mobileImage: "/product-mobile3.png",
     features: [
       "Tidak Meninggalkan Bekas",
       "Cepat Kering",
@@ -39,7 +42,8 @@ const products = [
   {
     name: "MilkyClean Bathroom Cleaner",
     desc: "Pembersih kamar mandi yang efektif menghilangkan kerak dan jamur.",
-    image: "/product-featured4.png",
+    image: "/product-featured3.png",
+    mobileImage: "/product-mobile4.png",
     features: [
       "Menghilangkan Kerak & Jamur",
       "Aroma Segar & Menyegarkan",
@@ -49,7 +53,8 @@ const products = [
   {
     name: "MilkyClean Multi-Purpose Cleaner",
     desc: "Pembersih serbaguna untuk berbagai permukaan rumah dan industri.",
-    image: "/product-featured5.png",
+    image: "/product-featured4.png",
+    mobileImage: "/product-mobile5.png",
     features: [
       "Serbaguna untuk Berbagai Permukaan",
       "Formula Ramah Lingkungan",
@@ -59,11 +64,23 @@ const products = [
   {
     name: "MilkyClean Toilet Cleaner",
     desc: "Pembersih toilet dengan daya bersih maksimal dan wangi tahan lama.",
-    image: "/product-featured6.png",
+    image: "/product-featured5.png",
+    mobileImage: "/product-mobile6.png",
     features: [
       "Daya Bersih Maksimal",
       "Membunuh Kuman & Bakteri",
       "Wangi Tahan Lama",
+    ],
+  },
+  {
+    name: "MilkyClean Kitchen Cleaner",
+    desc: "Membersihkan minyak dan kotoran dapur dengan mudah.",
+    image: "/product-featured6.png",
+    mobileImage: "/product-mobile7.png",
+    features: [
+      "Mengangkat Minyak Membandel",
+      "Aman untuk Permukaan Dapur",
+      "Cepat Membersihkan",
     ],
   },
 ]
@@ -156,16 +173,15 @@ const FeaturedProducts = () => {
 
                   {/* MOBILE IMAGE */}
                   <Image
-                    src="/product-mobile.png"
+                    src={item.mobileImage}
                     alt={item.name}
                     width={420}
                     height={900}
                     className="md:hidden w-full h-auto object-contain"
                   />
 
-
                   {/* DESKTOP GRADIENT */}
-                  <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-[#0F3F8F]/90" />
+                  <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-transparent to-[#0F3F8F]/60" />
 
                   {/* MOBILE CONTENT */}
                   <div className="md:hidden absolute bottom-[100px] left-0 w-full px-6 text-white text-center">
@@ -283,20 +299,42 @@ const FeaturedProducts = () => {
 
         </div>
 
-        {/* DOTS - overlaid on carousel but outside sliding container */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-          {products.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => emblaApi?.scrollTo(index)}
-              className={`w-2.5 h-2.5 rounded-full transition ${
-                selectedIndex === index
-                  ? "bg-white scale-125"
-                  : "bg-white/40"
-              }`}
-            />
-          ))}
-        </div>
+        <div className="md:hidden absolute bottom-[600px] left-1/2 -translate-x-1/2 flex gap-3">
+
+            {products.map((_, index) => (
+
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={`w-2.5 h-2.5 rounded-full transition ${
+                  selectedIndex === index
+                    ? "bg-white scale-125"
+                    : "bg-white/40"
+                }`}
+              />
+
+            ))}
+
+          </div>
+
+          {/* DESKTOP DOT */}
+          <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 gap-3">
+
+            {products.map((_, index) => (
+
+              <button
+                key={index}
+                onClick={() => emblaApi?.scrollTo(index)}
+                className={`w-2.5 h-2.5 rounded-full transition ${
+                  selectedIndex === index
+                    ? "bg-white scale-125"
+                    : "bg-white/40"
+                }`}
+              />
+
+            ))}
+
+          </div>
         </div>
 
         {/* SMALL PRODUCTS */}

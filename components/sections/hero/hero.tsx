@@ -19,35 +19,35 @@ const slides = [
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Kami menyediakan berbagai bahan kimia industri dengan kualitas terbaik dan distribusi terpercaya di seluruh Indonesia.",
     image: "/hero-image2.png",
-    mobileImage: "/hero-image-mobile.png",
+    mobileImage: "/hero-image-mobile2.png",
     bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
     image: "/hero-image3.png",
-    mobileImage: "/hero-image-mobile.png",
+    mobileImage: "/hero-image-mobile3.png",
     bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Kami menyediakan berbagai bahan kimia industri dengan kualitas terbaik dan distribusi terpercaya di seluruh Indonesia.",
     image: "/hero-image4.png",
-    mobileImage: "/hero-image-mobile.png",
+    mobileImage: "/hero-image-mobile4.png",
     bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
     image: "/hero-image5.png",
-    mobileImage: "/hero-image-mobile.png",
+    mobileImage: "/hero-image-mobile5.png",
     bgColor: "#E8F0FC",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
     desc: "Didukung pengalaman lebih dari 20 tahun dalam penyediaan bahan kimia industri.",
     image: "/hero-image6.png",
-    mobileImage: "/hero-image-mobile.png",
+    mobileImage: "/hero-image-mobile6.png",
     bgColor: "#E8F0FC",
   },
 ]
@@ -89,16 +89,15 @@ const Hero = () => {
               <div className="mx-auto flex flex-col md:flex-row items-center justify-between h-full">
 
                 {/* MOBILE IMAGE */}
-                <div className="md:hidden w-full relative">
+                <div className="md:hidden w-full relative h-[450px]">
                   <Image
                     src={slide.mobileImage}
                     alt="Produk bahan kimia industri"
-                    width={412}
-                    height={450}
+                    fill
                     className="w-full h-auto object-cover"
                     priority
                   />
-                    <div className="absolute bottom-0 left-0 w-full h-24" style={{ background: `linear-gradient(to bottom, transparent, ${slide.bgColor})` }} />
+                    <div className="absolute bottom-0 left-0 w-full h-18" style={{ background: `linear-gradient(to bottom, transparent, ${slide.bgColor})` }} />
                 </div>
 
                 {/* LEFT CONTENT */}
