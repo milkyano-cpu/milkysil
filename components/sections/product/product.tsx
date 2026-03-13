@@ -6,6 +6,7 @@ import Image from "next/image"
 type ProductCategory = {
   name: string
   icon: string
+  iconWhite: string
   products: Record<string, string[]>
 }
 
@@ -13,6 +14,7 @@ const categories: ProductCategory[] = [
   {
     name: "Fiberglass",
     icon: "/fence-icon.png",
+    iconWhite: "/fence-white-icon.png",
     products: {
       C: ["CATALYST", "COBALT", "CSMATT 300 & 450"],
       R: [
@@ -29,6 +31,7 @@ const categories: ProductCategory[] = [
   {
     name: "General Chemicals",
     icon: "/chemical-icon.png",
+    iconWhite: "/chemical-white-icon.png",
     products: {
       A: ["AMONIAK", "ADHESIVE / LEM PUTIH PVAC"],
       B: ["BORIC ACID"],
@@ -98,6 +101,7 @@ const categories: ProductCategory[] = [
   {
     name: "Water Treatment",
     icon: "/water-icon.png",
+    iconWhite: "/water-white-icon.png",
     products: {
       C: ["CARBON AKTIF"],
       F: ["FLOKULAN ANIONIC POLYMER"],
@@ -126,6 +130,7 @@ const categories: ProductCategory[] = [
   {
     name: "Silicone Emulsion",
     icon: "/glue-icon.png",
+    iconWhite: "/glue-white-icon.png",
     products: {
       M: [
         "MILKYSIL CONCENTRATE",
@@ -159,6 +164,7 @@ const categories: ProductCategory[] = [
   {
     name: "Household",
     icon: "/clean-icon.png",
+    iconWhite: "/clean-white-icon.png",
     products: {
       C: ["CARBOL LEMON"],
       D: [
@@ -184,6 +190,7 @@ const categories: ProductCategory[] = [
   {
     name: "Flavouring for Food & Tobacco",
     icon: "/food-icon.png",
+    iconWhite: "/food-white-icon.png",
     products: {
       E: [
         "ESSENCE",
@@ -205,6 +212,7 @@ const categories: ProductCategory[] = [
   {
     name: "Others",
     icon: "/other-icon.png",
+    iconWhite: "/other-white-icon.png",
     products: {
       A: ["AQUA DM / DEMINERALISASI"],
       C: ["COCODIETHANOLAMIDE / CDEA"],
@@ -248,15 +256,20 @@ export default function ProductSection() {
 
 
       {/* CATEGORY TAB */}
-        <div className="w-full px-6 -mt-12">
-                <div className="flex gap-4 overflow-x-auto md:overflow-visible md:justify-center md:max-w-[1100px] md:mx-auto no-scrollbar">
+        <div className="relative z-20 w-full -mt-12">
+                <div className="flex gap-3 overflow-x-auto px-6 md:px-0 md:overflow-visible md:justify-center md:max-w-[1100px] md:mx-auto no-scrollbar pb-4">
 
         {categories.map((cat, index) => (
 
             <button
                 key={index}
                 onClick={() => setActiveTab(index)}
-                className={`flex items-center justify-center gap-3 flex-shrink-0 md:flex-1 min-w-[227px] h-[72px] px-8 rounded-lg text-base font-medium shadow-md transition cursor-pointer
+                  className={`flex items-center justify-center gap-2 flex-shrink-0
+                  w-[160px] md:w-[180px]
+                  h-[60px] md:h-[70px]
+                  px-3
+                  text-xs md:text-sm
+                  rounded-lg font-medium shadow-md transition cursor-pointer
                 ${
                     activeTab === index
                     ? "bg-blue-600 text-white"
@@ -265,10 +278,13 @@ export default function ProductSection() {
             >
 
             <Image
-            src={cat.icon}
-            alt={cat.name}
-            width={20}
-            height={20}
+              src={
+                activeTab === index
+                  ? cat.iconWhite : cat.icon
+              }
+              alt={cat.name}
+              width={20}
+              height={20}
             />
 
             {cat.name}
