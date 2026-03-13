@@ -18,69 +18,69 @@ const products = [
     ],
   },
   {
-    name: "MilkyClean Floor Cleaner",
-    desc: "Membersihkan noda dan menjaga kilap lantai.",
+    name: "MilkyClean Glass Cleaner",
+    desc: "Solusi pembersih kaca berkinerja tinggi yang diformulasikan untuk menghilangkan noda, debu, dan bekas sidik jari, sekaligus mengembalikan kilap jernih pada permukaan kaca.",
     image: "/product-featured1.png",
     mobileImage: "/product-mobile2.png",
     features: [
-      "Membersihkan Noda Membandel",
-      "Aman untuk Semua Jenis Lantai",
-      "Wangi Segar Tahan Lama",
+      "Menghilangkan Noda & Sidik Jari",
+      "Memberikan Kilap Kaca Tanpa Bekas",
+      "Cocok untuk Rumah, Kantor & komersial",
     ],
   },
   {
-    name: "MilkyClean Glass Cleaner",
-    desc: "Membersihkan kaca tanpa meninggalkan noda.",
+    name: "MilkyClean Floor Cleaner Apple",
+    desc: "Solusi pembersih lantai dengan aroma apel segar yang diformulasikan untuk mengangkat noda, kotoran, dan debu, sekaligus memberikan kesegaran dan kilap pada lantai.",
     image: "/product-featured2.png",
     mobileImage: "/product-mobile3.png",
     features: [
-      "Tidak Meninggalkan Bekas",
-      "Cepat Kering",
-      "Cocok untuk Kaca & Cermin",
+      "Mengangkat Noda & Kotoran Membandel",
+      "Aroma Apel Segar yang Tahan Lama",
+      "Cocok untuk Rumah, Kantor & Area Komersial",
     ],
   },
   {
-    name: "MilkyClean Bathroom Cleaner",
-    desc: "Pembersih kamar mandi yang efektif menghilangkan kerak dan jamur.",
+    name: "MilkyClean Sabun Cuci Piring Jeruk Nipis",
+    desc: "Sabun cuci piring dengan ekstrak jeruk nipis yang efektif mengangkat lemak, sisa makanan, dan noda membandel, sekaligus memberikan aroma segar pada peralatan dapur.",
     image: "/product-featured3.png",
     mobileImage: "/product-mobile4.png",
     features: [
-      "Menghilangkan Kerak & Jamur",
-      "Aroma Segar & Menyegarkan",
-      "Aman untuk Semua Permukaan Kamar Mandi",
+      "Menghilangkan Lemak & Noda Membandel",
+      "Aroma Jeruk Nipis Segar",
+      "Cocok untuk Rumah, Restoran & Usaha Kuliner",
     ],
   },
   {
-    name: "MilkyClean Multi-Purpose Cleaner",
-    desc: "Pembersih serbaguna untuk berbagai permukaan rumah dan industri.",
+    name: "MilkyClean Handwash Strawberry",
+    desc: "Sabun cuci tangan dengan aroma strawberry segar untuk membersihkan tangan secara efektif dari kotoran dan kuman, sekaligus menjaga tangan tetap lembut dan harum.",
     image: "/product-featured4.png",
     mobileImage: "/product-mobile5.png",
     features: [
-      "Serbaguna untuk Berbagai Permukaan",
-      "Formula Ramah Lingkungan",
-      "Efektif Menghilangkan Minyak & Kotoran",
+      "Membersihkan Tangan dari Kotoran & Kuman",
+      "Aroma Strawberry Segar dan Menyegarkan",
+      "Cocok untuk Rumah, Kantor & Area Publik",
     ],
   },
   {
-    name: "MilkyClean Toilet Cleaner",
-    desc: "Pembersih toilet dengan daya bersih maksimal dan wangi tahan lama.",
+    name: "MilkyClean Carbol Sereh",
+    desc: "Pembersih lantai dengan aroma sereh segar yang membantu membunuh kuman, mengangkat kotoran, serta menjaga lantai tetap bersih, higenis, dan harum.",
     image: "/product-featured5.png",
     mobileImage: "/product-mobile6.png",
     features: [
-      "Daya Bersih Maksimal",
-      "Membunuh Kuman & Bakteri",
-      "Wangi Tahan Lama",
+      "Membantu Membunuh Kuman & Bakteri",
+      "Aroma Sereh Segar Yang Menyegarkan",
+      "Cocok untuk Rumah, Kantor, & Area Publik",
     ],
   },
   {
-    name: "MilkyClean Kitchen Cleaner",
-    desc: "Membersihkan minyak dan kotoran dapur dengan mudah.",
+    name: "MilkyClean Shampoo Mobil",
+    desc: "Shampoo mobil berkualitas tinggi untuk membersihkan kotoran, debu, dan noda pada kendaraan, sekaligus menjaga kilap cat mobil tetap bersih dan mengkilap.",
     image: "/product-featured6.png",
     mobileImage: "/product-mobile7.png",
     features: [
-      "Mengangkat Minyak Membandel",
-      "Aman untuk Permukaan Dapur",
-      "Cepat Membersihkan",
+      "Mengangkat Kotoran & Debu Membandel",
+      "Membantu Menjaga Kilap Cat Kendaraan",
+      "Cocok untuk Mobil, Motor & Kendaraan Lainnya",
     ],
   },
 ]
@@ -298,8 +298,9 @@ const FeaturedProducts = () => {
           </div>
 
         </div>
-
-        <div className="md:hidden absolute bottom-[600px] left-1/2 -translate-x-1/2 flex gap-3">
+        
+        {/* MOBILE DOT */}
+        <div className="md:hidden absolute bottom-[620px] left-1/2 -translate-x-1/2 flex gap-3">
 
             {products.map((_, index) => (
 
@@ -318,7 +319,7 @@ const FeaturedProducts = () => {
           </div>
 
           {/* DESKTOP DOT */}
-          <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 gap-3">
+          <div className="hidden md:flex absolute bottom-4 left-1/2 -translate-x-1/2 gap-3">
 
             {products.map((_, index) => (
 
