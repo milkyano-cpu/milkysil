@@ -285,6 +285,7 @@ export default function ProductSection() {
               alt={cat.name}
               width={20}
               height={20}
+              className="flex-shrink-0"
             />
 
             {cat.name}
