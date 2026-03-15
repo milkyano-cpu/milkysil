@@ -1,7 +1,8 @@
 import Header from "@/components/layouts/header"
-import AboutSection from "@/components/sections/about/about"
+import AboutSection from "@/components/sections/contact/contact"
 import Footer from "@/components/layouts/footer"
 import type { Metadata } from "next";
+import ContactSection from "@/components/sections/contact/contact";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -13,7 +14,7 @@ export default function About() {
     <main>
 
       <Header />
-
+      <ContactSection />
       <Footer />
 
     </main>

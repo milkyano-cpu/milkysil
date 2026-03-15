@@ -1,5 +1,4 @@
 import Header from "@/components/layouts/header"
-import AboutSection from "@/components/sections/about/about"
 import ProductSection from "@/components/sections/product/product"
 import Footer from "@/components/layouts/footer"
 import type { Metadata } from "next";
