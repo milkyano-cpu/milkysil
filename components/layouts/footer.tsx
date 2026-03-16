@@ -64,9 +64,9 @@ const Footer = () => {
             <ul className="space-y-4 text-white/90 text-sm">
                 <li><Link href="/" className="hover:text-blue transition whitespace-nowrap">Home</Link></li>
                 <li><Link href="/about" className="hover:text-blue transition whitespace-nowrap">About Us</Link></li>
-                <li><Link href="/products" className="hover:text-blue transition whitespace-nowrap">Products</Link></li>
-                <li><Link href="/industries" className="hover:text-blue transition whitespace-nowrap">Industries</Link></li>
-                <li><Link href="/news" className="hover:text-blue transition whitespace-nowrap">Resources</Link></li>
+                <li><Link href="/product" className="hover:text-blue transition whitespace-nowrap">Products</Link></li>
+                <li><Link href="/contact" className="hover:text-blue transition whitespace-nowrap">Industries</Link></li>
+                <li><Link href="/blogs" className="hover:text-blue transition whitespace-nowrap">Resources</Link></li>
             </ul>
             </div>
 
@@ -75,12 +75,12 @@ const Footer = () => {
         <h4 className="font-semibold mb-6 text-lg">Our Products</h4>
 
         <ul className="space-y-4 text-white/90 text-sm">
-            <li><Link href="/products/general-chemicals" className="hover:text-blue transition">General Chemicals</Link></li>
-            <li><Link href="/products/water-treatment" className="hover:text-blue transition whitespace-nowrap">Water Treatment Chemicals</Link></li>
-            <li><Link href="/products/fiberglass-materials" className="hover:text-blue transition whitespace-nowrap">Fiberglass Materials</Link></li>
-            <li><Link href="/products/silicone-emulsion" className="hover:text-blue transition whitespace-nowrap">Silicone Emulsion</Link></li>
-            <li><Link href="/products/household-chemicals" className="hover:text-blue transition whitespace-nowrap">Household Chemicals</Link></li>
-            <li><Link href="/products/food-flavouring" className="hover:text-blue transition whitespace-nowrap">Food & Flavouring Ingredients</Link></li>
+            <li><Link href="/product?tab=general" className="hover:text-blue transition">General Chemicals</Link></li>
+            <li><Link href="/product?tab=water" className="hover:text-blue transition whitespace-nowrap">Water Treatment Chemicals</Link></li>
+            <li><Link href="/product?tab=fiberglass" className="hover:text-blue transition whitespace-nowrap">Fiberglass Materials</Link></li>
+            <li><Link href="/product?tab=silicone" className="hover:text-blue transition whitespace-nowrap">Silicone Emulsion</Link></li>
+            <li><Link href="/product?tab=household" className="hover:text-blue transition whitespace-nowrap">Household Chemicals</Link></li>
+            <li><Link href="/product?tab=flavour" className="hover:text-blue transition whitespace-nowrap">Food & Flavouring Ingredients</Link></li>
         </ul>
         </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import Image from "next/image";
 
 type Product = {
@@ -265,7 +266,33 @@ function buildCategories(): ProductCategory[] {
 export default function ProductSection() {
   const categories = useMemo(() => buildCategories(), []);
 
-  const [activeTab, setActiveTab] = useState(0);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const tabMap: Record<string, number> = {
+    fiberglass: 0,
+    general: 1,
+    water: 2,
+    silicone: 3,
+    household: 4,
+    flavour: 5,
+    others: 6,
+  };
+
+  const tabKeys = [
+    "fiberglass",
+    "general",
+    "water",
+    "silicone",
+    "household",
+    "flavour",
+    "others",
+  ];
+
+  const initialTab =
+    tabMap[searchParams.get("tab") as keyof typeof tabMap] ?? 0;
+
+  const [activeTab, setActiveTab] = useState(initialTab);
 
   const activeProducts = categories[activeTab].products;
 
@@ -289,7 +316,10 @@ export default function ProductSection() {
           {categories.map((cat, index) => (
             <button
               key={index}
-              onClick={() => setActiveTab(index)}
+              onClick={() => {
+                setActiveTab(index);
+                router.push(`/product?tab=${tabKeys[index]}`);
+              }}
               className={`flex items-center justify-center gap-2 flex-shrink-0
     w-[160px] md:w-[180px]
     h-[60px] md:h-[70px]
