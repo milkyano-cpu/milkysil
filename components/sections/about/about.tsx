@@ -19,7 +19,7 @@ const AboutSection = () => {
         <div className="bg-white rounded-[20px] shadow-lg py-12 flex justify-center">
 
           <Image
-            src="/milkysil-logo.svg"
+            src="/logo-aboutus.png"
             alt="CV Milky Makmur Sejahtera"
             width={800}
             height={200}

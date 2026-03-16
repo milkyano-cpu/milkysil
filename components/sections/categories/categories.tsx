@@ -6,31 +6,38 @@ const categories = [
     title: "General Chemicals",
     desc: "Bahan baku esensial untuk berbagai proses manufaktur dan produksi.",
     icon: "/chemical-icon.png",
+    link: "/product?tab=general",
   },
   {
     title: "Water Treatment Chemicals",
     desc: "Solusi kimia untuk sistem pengolahan dan pemurnian air.",
     icon: "/water-icon.png",
+    link: "/product?tab=water",
   },
   {
     title: "Fiberglass Materials",
     desc: "Resin dan material pendukung untuk aplikasi komposit dan konstruksi.",
     icon: "/fence-icon.png",
+    link: "/product?tab=fiberglass",
+    
   },
   {
     title: "Silicone Emulsion",
     desc: "Formulasi berbasis silikon berkualitas tinggi untuk kebutuhan industri.",
     icon: "/glue-icon.png",
+    link: "/product?tab=silicone",
   },
   {
     title: "Household & Cleaning Chemicals",
     desc: "Bahan kimia untuk produk pembersih dan kebutuhan sanitasi.",
     icon: "/clean-icon.png",
+    link: "/product?tab=household",
   },
   {
     title: "Food & Flavouring Ingredients",
     desc: "Bahan kimia terpilih untuk aplikasi industri makanan dan minuman.",
     icon: "/food-icon.png",
+    link: "/product?tab=flavour",
   },
 ]
 
@@ -87,7 +94,7 @@ const Categories = () => {
               <div className="border-t pt-4 text-center md:text-left">
 
                 <Link
-                  href="/products"
+                  href={item.link}
                   className="text-blue-600 text-sm font-medium hover:underline"
                 >
                   Lihat Produk →
