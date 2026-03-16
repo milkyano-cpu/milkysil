@@ -1,145 +1,114 @@
 "use client"
 
-import { Mail, Phone, MapPin, ArrowRight } from "lucide-react"
-import Image from "next/image"
+import { Mail, Phone, MapPin } from "lucide-react"
 
 const mainDistributor = {
   name: "MENTARI JAYA",
   region: "JABODETABEK",
   address:
-    "Jl. Auto Ring Road Cengkareng, Ruko Malibu Blok No.55, City Resort Cengkareng - Jakarta Barat",
-  image: "/distributor.png"
+    "JL AUTO RING ROAD CENGKARENG, RUKO MALIBU BLOK NO. 55, CITY RESORT – CENGKARENG – JAKARTA BARAT"
 }
 
 const distributors = [
   {
-    name: "ADIPOOL",
+    name: "ADI POOL",
     region: "JABODETABEK",
-    address: "Jl. Margasatwa No.5, Pondok Labu, Jakarta Selatan",
-    image: "/distributor.png"
+    address: "JL MARGASATWA NO. 5, PONDOK LABU, JAKARTA SELATAN"
   },
   {
     name: "ALAM KIMIA",
     region: "JABODETABEK",
-    address: "Jalan Galah Mada No.50, Ruko Taman Sari",
-    image: "/distributor.png"
+    address: "JALAN GAJAH MADA NO. 50, KRUKUT – TAMAN SARI"
   },
   {
     name: "BAHTERA KIMIA",
     region: "BANDUNG",
-    address: "Jl. Babakan Ciparay No.72, Sukahaji, Bandung",
-    image: "/distributor.png"
+    address: "JL MARGASATWA NO. 5, PONDOK LABU, JAKARTA SELATAN"
   },
   {
     name: "BRAVO CHEMICAL",
     region: "SURABAYA",
-    address: "Jl. Raya Pabean No.20, Sedati - Sidoarjo",
-    image: "/distributor.png"
+    address: "JL RAYA PABEAN NO. 20, SEDATI – SIDOARJO"
   },
   {
     name: "CENTRAL KIMIA",
     region: "JABODETABEK",
-    address: "Jl. Gedong Sawah No.88, Bogor",
-    image: "/distributor.png"
+    address: "JL GEDONG SAWAH IV NO. 5D, BOGOR"
   },
   {
     name: "CV. SABA KIMIA",
     region: "SURABAYA",
-    address: "Jl. Kapas Krampung 202, Surabaya",
-    image: "/distributor.png"
+    address: "JL KAPAS KRAMPUNG 202, SURABAYA"
   },
   {
     name: "FAJAR SETIA",
     region: "JABODETABEK",
-    address: "Jl. Prof. Dr. Satrio No.295, Jakarta Selatan",
-    image: "/distributor.png"
+    address: "JL PROF DR. SATRIO NO. 295, KARET KUNINGAN, SETIABUDI, JAKARTA SELATAN"
   },
   {
     name: "INDO KIMIA",
     region: "SURABAYA",
-    address: "Jl. Tidar No.278",
-    image: "/distributor.png"
+    address: "JL TIDAR NO. 278"
   },
   {
     name: "JAYA MAKMUR KIMIA",
     region: "SURABAYA",
-    address: "Jl. Tidar No.210",
-    image: "/distributor.png"
+    address: "JL TIDAR NO. 210"
   },
-
-  // tambahan dari screenshot
-
   {
     name: "PANCA KIMIA",
     region: "JABODETABEK",
-    address: "Jl. Pulo Empang No 50A/B, Pancasan, Bogor Tengah",
-    image: "/distributor.png"
+    address: "JL PULO EMPANG NO 50A/B, PANCASAN, BOGOR TENGAH"
   },
   {
     name: "PT. ARTHASRI BHADRATA INDONESIA",
     region: "MEDAN",
-    address: "Jl. Komplek Multatuli Indah Blok C No.30-31",
-    image: "/distributor.png"
+    address: "PT. ARTHASRI BHADRATA INDONESIA"
   },
   {
-    name: "JL. KOMPLEK MULTATULI INDAH BLOK C NO.30-31",
+    name: "PT. HARAPAN KIMIA INDONESIA",
     region: "SURABAYA",
-    address: "Jl. Pasar Kembang 28-30, Surabaya",
-    image: "/distributor.png"
+    address: "JL PASAR KEMBANG 28–30, SURABAYA"
   },
   {
     name: "PT. KARUNIA SEJAHTERA ABADI (SABA KIMIA)",
     region: "BALI",
-    address: "Jl. Buluh Indah No.99, Denpasar - Bali",
-    image: "/distributor.png"
-  },
-  {
-    name: "RODES CHEMINDO",
-    region: "MEDAN",
-    address: "Jalan Sekip Baru No.2",
-    image: "/distributor.png"
+    address: "JL BULUH INDAH NO. 99, DENPASAR – BALI"
   },
   {
     name: "SANDI ANEKA WANGI",
     region: "SEMARANG",
-    address: "Jl. Jendral Sudirman No.117",
-    image: "/distributor.png"
+    address: "JL PULO EMPANG NO 50A/B, PANCASAN, BOGOR TENGAH"
   },
   {
     name: "SINAR KIMIA",
     region: "JABODETABEK",
-    address: "Jl. Hos Cokroaminoto No.1A, Kreo, Ciledug",
-    image: "/distributor.png"
+    address: "JL PULO EMPANG NO 50A/B, PANCASAN, BOGOR TENGAH"
   },
   {
     name: "SUBUR JAYA",
-    region: "TASIK - CIAMIS",
-    address: "Jalan Selakaso No.39",
-    image: "/distributor.png"
+    region: "TASIK – CIAMIS",
+    address: "JALAN SELAKASO NO. 39"
   },
   {
     name: "SUMBER ABADI KIMIA",
     region: "JABODETABEK",
-    address: "Jl. Raya Serpong KM 8 No.24, Pakulonan Tangerang",
-    image: "/distributor.png"
+    address: "JL RAYA SERPONG KM 8 NO. 24, PAKULONAN TANGERANG"
   },
   {
     name: "SUMBER BERKAT",
     region: "JABODETABEK",
-    address: "Jalan Ciledug Raya, Ruko Puri Beta 1 No.9, Larangan",
-    image: "/distributor.png"
+    address: "JALAN CILEDUG RAYA, RUKO PURI BETA 1 NO. 9, LARANGAN"
   },
   {
     name: "SUMBER KIMIA",
-    region: "TASIK - CIAMIS",
-    address: "Jalan Pasar Manis Komplek Ruko No.30 (Depan Terminal)",
-    image: "/distributor.png"
+    region: "TASIK – CIAMIS",
+    address: "JALAN PASAR MANIS KOMPLEK RUKO NO. 30 (DEPAN TERMINAL)"
   },
   {
     name: "TOKO SABA KIMIA",
     region: "SOLO",
-    address: "Jl. Urip Sumoharjo No.56, Solo",
-    image: "/distributor.png"
+    address: "JL URIP SUMOHARJO NO. 56, SOLO"
   }
 ]
 
@@ -164,9 +133,9 @@ export default function ContactSection() {
         </p>
       </div>
 
-      {/* CONTENT */}
+      {/* CONTACT INFO */}
 
-      <div className="max-w-[1100px] mx-auto px-6 mt-15">
+      <div className="max-w-[1100px] mx-auto px-6 mt-16">
         <div className="grid md:grid-cols-2 gap-12 items-start">
 
           {/* LEFT */}
@@ -182,35 +151,23 @@ export default function ContactSection() {
               Kota Bandung, Jawa Barat 40221
             </p>
 
-            {/* EMAIL */}
-
             <div className="flex items-start gap-4 mt-6">
               <Mail className="text-blue-600 mt-1" size={22} />
-
               <div>
                 <p className="text-sm font-semibold text-gray-700">Email</p>
-
                 <p className="text-sm text-gray-500">
                   milkymakmursejahtera@gmail.com
                 </p>
               </div>
             </div>
 
-            {/* PHONE */}
-
             <div className="flex items-start gap-4 mt-4">
               <Phone className="text-blue-600 mt-1" size={22} />
-
               <div>
                 <p className="text-sm font-semibold text-gray-700">Phone</p>
-
-                <p className="text-sm text-gray-500">
-                  (022) 6026165
-                </p>
+                <p className="text-sm text-gray-500">(022) 6026165</p>
               </div>
             </div>
-
-            {/* MAP */}
 
             <a
               href={mapLink}
@@ -230,7 +187,7 @@ export default function ContactSection() {
 
           {/* RIGHT FORM */}
 
-         <div className="bg-white rounded-2xl shadow-lg p-10">
+          <div className="bg-white rounded-2xl shadow-lg p-10">
 
             <h3 className="text-2xl font-bold text-[#2B3F6C] mb-8">
               Kirim Pesan
@@ -238,56 +195,37 @@ export default function ContactSection() {
 
             <form className="space-y-8">
 
-              {/* NAMA */}
-
               <div>
-                <label className="text-sm text-gray-500">
-                  Nama
-                </label>
-
+                <label className="text-sm text-gray-500">Nama</label>
                 <input
                   type="text"
                   className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-blue-600"
                 />
               </div>
 
-              {/* EMAIL */}
-
               <div>
-                <label className="text-sm text-gray-500">
-                  Email
-                </label>
-
+                <label className="text-sm text-gray-500">Email</label>
                 <input
                   type="email"
                   className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-blue-600"
                 />
               </div>
 
-              {/* PESAN */}
-
               <div>
-                <label className="text-sm text-gray-500">
-                  Pesan
-                </label>
-
+                <label className="text-sm text-gray-500">Pesan</label>
                 <textarea
                   rows={4}
                   className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-blue-600"
                 />
               </div>
 
-              {/* BUTTON */}
-
               <div className="pt-4 flex justify-end">
-
                 <button
                   type="submit"
-                  className="flex items-center gap-3 bg-[#1674D3] hover:bg-[#245a91] text-white px-15 py-3 rounded-md transition cursor-pointer"
+                  className="bg-[#1674D3] hover:bg-[#245a91] text-white px-10 py-3 rounded-md transition"
                 >
                   Submit
                 </button>
-
               </div>
 
             </form>
@@ -297,119 +235,96 @@ export default function ContactSection() {
         </div>
       </div>
 
-<div className="max-w-[1100px] mx-auto px-6 mt-28">
+      {/* DISTRIBUTOR */}
 
-  {/* DISTRIBUTOR UTAMA */}
+      <div className="max-w-[1000px] mx-auto px-6 mt-28">
 
-  <div className="text-center mb-14">
+        <div className="text-center mb-14">
+          <h3 className="text-2xl font-bold text-primary">
+            Distributor Utama
+          </h3>
+          <div className="w-16 h-[3px] bg-primary mx-auto mt-2 rounded-full"></div>
+        </div>
 
-    <h3 className="text-2xl font-bold text-primary">
-      Distributor Utama
-    </h3>
+        <div className="flex justify-center mb-20">
 
-    <div className="w-16 h-[3px] bg-primary mx-auto mt-2 rounded-full"></div>
+          <div className="bg-white rounded-[24px] border border-[#E4ECF8] p-8 w-full max-w-[300px] shadow-[0_4px_12px_rgba(37,99,235,0.06)] hover:shadow-[0_10px_30px_rgba(37,99,235,0.15)] hover:-translate-y-1 transition-all duration-300">
 
-  </div>
+            <div className="flex items-start gap-3">
 
+              <MapPin className="text-primary mt-1" size={20} />
 
-  {/* MAIN DISTRIBUTOR CARD */}
+              <div>
+                <p className="font-semibold text-sm text-primary">
+                  {mainDistributor.name}
+                </p>
 
-  <div className="flex justify-center mb-20">
+                <p className="text-[11px] text-gray-400 mt-1">
+                  {mainDistributor.region}
+                </p>
+              </div>
 
-    <div className="bg-white rounded-2xl shadow-md p-6 w-full max-w-[340px] hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+            </div>
 
-      <div className="overflow-hidden rounded-xl aspect-[4/3]">
+            <div className="border-t mt-4 pt-4">
 
-        <Image
-          src={mainDistributor.image}
-          alt=""
-          width={400}
-          height={200}
-          className="object-cover w-full h-full transition duration-500 group-hover:scale-110"
-        />
+              <p className="text-xs text-gray-400 leading-relaxed">
+                {mainDistributor.address}
+              </p>
 
-      </div>
+            </div>
 
-      <div className="mt-4 text-left">
-
-        <p className="font-semibold text-sm tracking-wide">
-          {mainDistributor.name}
-        </p>
-
-        <p className="text-xs text-gray-500 mt-1">
-          {mainDistributor.region}
-        </p>
-
-        <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-          {mainDistributor.address}
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-
-  {/* TOKO TITLE */}
-
-  <div className="text-center mt-35 mb-12">
-
-    <h3 className="text-2xl font-bold text-primary">
-      Toko Yang Menjual Produk Milkysil
-    </h3>
-
-    <div className="w-20 h-[3px] bg-primary mx-auto mt-2 rounded-full"></div>
-
-  </div>
-
-
-  {/* TOKO GRID */}
-
-  <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
-
-    {distributors.map((item, index) => (
-
-      <div
-        key={index}
-        className="bg-white rounded-2xl shadow-md p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
-      >
-
-        <div className="overflow-hidden rounded-xl aspect-[4/3]">
-
-          <Image
-            src={item.image}
-            alt=""
-            width={400}
-            height={200}
-            className="object-cover w-full h-full transition duration-500 group-hover:scale-110"
-          />
+          </div>
 
         </div>
 
-        <div className="mt-4">
+        <div className="text-center mb-12">
+          <h3 className="text-2xl font-bold text-primary">
+            Toko Yang Menjual Produk Milkysil
+          </h3>
+          <div className="w-20 h-[3px] bg-primary mx-auto mt-2 rounded-full"></div>
+        </div>
 
-          <p className="font-semibold text-sm tracking-wide">
-            {item.name}
-          </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
-          <p className="text-xs text-gray-500 mt-1">
-            {item.region}
-          </p>
+          {distributors.map((item, index) => (
 
-          <p className="text-xs text-gray-400 mt-2 leading-relaxed">
-            {item.address}
-          </p>
+            <div
+              key={index}
+              className="bg-white rounded-[24px] border border-[#E4ECF8] p-5 min-h-[150px] shadow-[0_2px_8px_rgba(37,99,235,0.05)] hover:shadow-[0_8px_20px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300"
+            >
+
+              <div className="flex items-start gap-3">
+
+                <MapPin className="text-primary mt-1" size={20} />
+
+                <div>
+                  <p className="font-semibold text-sm text-primary">
+                    {item.name}
+                  </p>
+
+                  <p className="text-[11px] text-gray-400 mt-1">
+                    {item.region}
+                  </p>
+                </div>
+
+              </div>
+
+              <div className="border-t mt-4 pt-4">
+
+                <p className="text-xs text-gray-400 leading-relaxed">
+                  {item.address}
+                </p>
+
+              </div>
+
+            </div>
+
+          ))}
 
         </div>
 
       </div>
-
-    ))}
-
-  </div>
-
-</div>
 
     </section>
   )
