@@ -63,7 +63,7 @@ const distributors = [
   {
     name: "PT. ARTHASRI BHADRATA INDONESIA",
     region: "MEDAN",
-    address: "PT. ARTHASRI BHADRATA INDONESIA"
+    address: "JL. KOMPLEK MULTATULI INDAH BLOK C NO. 30-31"
   },
   {
     name: "PT. HARAPAN KIMIA INDONESIA",
@@ -74,6 +74,11 @@ const distributors = [
     name: "PT. KARUNIA SEJAHTERA ABADI (SABA KIMIA)",
     region: "BALI",
     address: "JL BULUH INDAH NO. 99, DENPASAR – BALI"
+  },  
+  {
+    name: "RODES CHEMINDO",
+    region: "MEDAN",
+    address: "JALAN SEKIP BARU NO. 2"
   },
   {
     name: "SANDI ANEKA WANGI",
@@ -285,13 +290,18 @@ export default function ContactSection() {
           <div className="w-20 h-[3px] bg-primary mx-auto mt-2 rounded-full"></div>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
 
           {distributors.map((item, index) => (
 
             <div
               key={index}
-              className="bg-white rounded-[24px] border border-[#E4ECF8] p-5 min-h-[150px] shadow-[0_2px_8px_rgba(37,99,235,0.05)] hover:shadow-[0_8px_20px_rgba(37,99,235,0.12)] hover:-translate-y-1 transition-all duration-300"
+              className="bg-white rounded-[24px] border border-[#E4ECF8]
+              p-8 w-full max-w-[300px] mx-auto
+              shadow-[0_4px_12px_rgba(37,99,235,0.06)]
+              hover:shadow-[0_10px_30px_rgba(37,99,235,0.15)]
+              hover:-translate-y-1
+              transition-all duration-300"
             >
 
               <div className="flex items-start gap-3">
