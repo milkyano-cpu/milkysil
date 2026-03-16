@@ -98,8 +98,9 @@ const Footer = () => {
 
             <li>
             <a
-                href="https://maps.google.com"
+                href="https://www.google.com/maps/place/Jl.+Babakan+Ciparay+No.72,+Sukahaji,+Kec.+Babakan+Ciparay,+Kota+Bandung,+Jawa+Barat+40221"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-blue transition"
             >
                 Jl. Babakan Ciparay No.72, Sukahaji, Kec. Babakan Ciparay,
