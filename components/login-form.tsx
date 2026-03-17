@@ -48,7 +48,7 @@ export function LoginForm({
         return
       }
 
-      const redirect = searchParams.get("redirect") || "/dashboard"
+      const redirect = searchParams.get("redirect") || "/admin"
       router.push(redirect)
     } catch {
       setError("Terjadi kesalahan. Silakan coba lagi.")
