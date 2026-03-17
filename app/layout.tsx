@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Milkysil | Chemical Trading & Manufacturing",
     description:
-      "Perusahaan trading dan manufaktur bahan kimia terpercaya sejak 2003 dengan jaringan distribusi luas di Indonesia.",
-    url: "https://milkysil.vercel.app/", 
+      "Perusahaan Dagang Kimia terkemuka di Bidang Kimia Umum (General) dan Kimia Khusus (Speciality).",
+    url: "https://milkysil.com", 
     siteName: "Milkysil",
     images: [
       {
