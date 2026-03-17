@@ -16,7 +16,7 @@ import {
 import type { Metadata } from "next"
 
 function isValidImageUrl(url: string): boolean {
-  return url.startsWith("/") || url.startsWith("http://") || url.startsWith("https://")
+  return url?.startsWith("/") || url?.startsWith("http://") || url?.startsWith("https://")
 }
 
 function cleanBrokenImages(html: string): string {
@@ -47,17 +47,17 @@ export default async function BlogDetail({ params }: Props) {
   const jsonLd = generateArticleJsonLd(article)
 
   return (
-    <main className="bg-[#F7F9FC] pb-20 pt-6 md:pt-10">
+    <main className="bg-[#F7F9FC] min-h-screen pb-20">
 
       <Header />
-
+      
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* BREADCRUMB */}
-      <div className="max-w-[1100px] mx-auto px-4 md:px-6 mt-6 md:mt-16 mb-4 md:mb-6">
+      {/* ================= BREADCRUMB ================= */}
+      <div className="max-w-[1100px] mx-auto px-4 md:px-6 mt-10 md:mt-16 mb-6">
         <Breadcrumb>
           <BreadcrumbList className="text-xs md:text-sm text-gray-500">
             <BreadcrumbItem>
@@ -65,7 +65,9 @@ export default async function BlogDetail({ params }: Props) {
                 <Link href="/blogs">Blogs</Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
+
             <BreadcrumbSeparator />
+
             <BreadcrumbItem>
               <BreadcrumbLink asChild>
                 <Link href={`/blogs?category=${article.category}`}>
@@ -73,74 +75,95 @@ export default async function BlogDetail({ params }: Props) {
                 </Link>
               </BreadcrumbLink>
             </BreadcrumbItem>
+
             <BreadcrumbSeparator />
+
             <BreadcrumbItem>
-              <BreadcrumbPage className="text-primary">{article.title}</BreadcrumbPage>
+              <BreadcrumbPage className="text-primary">
+                {article.title}
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
       </div>
 
-      {/* IMAGE */}
+      {/* ================= HERO IMAGE ================= */}
       {isValidImageUrl(article.image) && (
         <div className="max-w-[1100px] mx-auto px-4 md:px-6">
           <Image
             src={article.image}
             alt={article.title}
             width={1200}
-            height={500}
+            height={600}
             priority
             className="
               w-full
-              h-[220px] sm:h-[280px] md:h-[400px]
+              h-[260px] sm:h-[320px] md:h-[420px]
               object-cover
-              rounded-xl md:rounded-2xl
+              rounded-2xl
             "
           />
         </div>
       )}
 
-      {/* CONTENT */}
-      <div className="max-w-[700px] mx-auto px-4 md:px-6 mt-8 md:mt-12 space-y-4 md:space-y-6">
+      {/* ================= CONTENT ================= */}
+      <div className="max-w-[900px] mx-auto px-4 md:px-6 mt-10 md:mt-14">
 
-        <h1 className="
-          text-xl sm:text-2xl md:text-4xl
-          font-bold
-          text-primary
-          leading-tight
-        ">
-          {article.title}
-        </h1>
+        {/* CARD WRAPPER */}
+        <div className="rounded-2xl space-y-6 md:space-y-8">
 
-        <div className="flex items-center gap-3 text-xs md:text-sm text-gray-400">
-          <span>{article.author.name}</span>
-          <span>·</span>
-          <span>
-            {new Date(article.createdAt).toLocaleDateString("id-ID", {
-              day: "2-digit",
-              month: "long",
-              year: "numeric",
-            })}
-          </span>
+          {/* TITLE */}
+          <div>
+            <h1 className="text-2xl md:text-4xl font-bold text-primary leading-tight">
+              {article.title}
+            </h1>
+            <div className="w-16 h-[3px] bg-primary mt-3 rounded-full"></div>
+          </div>
+
+          {/* META */}
+          <div className="flex items-center gap-3 text-xs md:text-sm text-gray-400">
+            <span className="font-medium text-gray-500">
+              {article.author.name}
+            </span>
+            <span>•</span>
+            <span>
+              {new Date(article.createdAt).toLocaleDateString("id-ID", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+              })}
+            </span>
+          </div>
+
+          {/* ARTICLE BODY */}
+          <div
+            className="
+              prose prose-sm md:prose-base max-w-none
+
+              prose-p:leading-relaxed md:prose-p:leading-loose
+              prose-p:text-[#1E3E6D]
+
+              prose-headings:text-primary
+              prose-headings:font-bold
+
+              prose-h2:text-xl md:prose-h2:text-2xl
+              prose-h3:text-lg md:prose-h3:text-xl
+
+              prose-a:text-blue-600 prose-a:underline
+
+              prose-img:rounded-xl prose-img:my-6
+
+              prose-li:marker:text-primary
+            "
+            dangerouslySetInnerHTML={{
+              __html: cleanBrokenImages(article.content),
+            }}
+          />
+
         </div>
-
-        <div
-          className="
-            prose prose-sm md:prose-base max-w-none
-            text-[#1E3E6D]
-            leading-relaxed md:leading-loose
-            text-justify
-            [&_a]:text-blue-600 [&_a]:underline
-            [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-primary [&_h2]:mt-8
-            [&_h3]:text-lg [&_h3]:font-semibold [&_h3]:text-primary [&_h3]:mt-6
-            [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-4 [&_blockquote]:italic
-            [&_img]:rounded-xl [&_img]:my-4
-          "
-          dangerouslySetInnerHTML={{ __html: cleanBrokenImages(article.content) }}
-        />
-
       </div>
 
+      {/* ================= FOOTER ================= */}
       <div className="mt-16 md:mt-24">
         <Footer />
       </div>
