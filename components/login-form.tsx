@@ -49,7 +49,7 @@ export function LoginForm({
       }
 
       const redirect = searchParams.get("redirect") || "/admin"
-      window.location.href = redirect
+      router.push(redirect)
     } catch {
       setError("Terjadi kesalahan. Silakan coba lagi.")
     } finally {
