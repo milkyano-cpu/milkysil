@@ -4,12 +4,12 @@ import { NextResponse } from "next/server"
 export async function POST(req: Request) {
   const body = await req.json()
 
-  // 🔥 CEK DUPLICATE
+
   const existing = await prisma.product.findFirst({
     where: {
       name: {
         equals: body.name,
-        mode: "insensitive", // biar case-insensitive
+        mode: "insensitive",
       },
     },
   })
