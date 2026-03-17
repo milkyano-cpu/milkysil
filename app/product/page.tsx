@@ -21,7 +21,7 @@ export default async function About() {
   return (
     <main>
       <Header />
-      <ProductSection categories={categories} /> {/* ✅ FIX */}
+      <ProductSection categories={categories} /> 
       <Footer />
     </main>
   )

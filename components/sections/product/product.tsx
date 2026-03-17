@@ -84,7 +84,6 @@ export default function ProductSection({
 
   const router = useRouter();
 
-  // ✅ cukup 1 state
   const [activeTab, setActiveTab] = useState(0);
 
   const tabKeys = [

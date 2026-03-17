@@ -11,5 +11,5 @@ export default async function Page() {
     },
     })
 
-  return <ProductClient initialData={products} />
+    return <ProductClient initialData={products} />
 }

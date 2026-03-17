@@ -302,7 +302,6 @@ export default function ProductClient({ initialData }: any) {
 
       </div>
 
-      {/* MODALS (tetap sama seperti punyamu) */}
       {open && (
         <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50" onClick={() => setOpen(false)}>
           <div className="bg-white p-6 rounded w-80 space-y-3" onClick={e => e.stopPropagation()}>
