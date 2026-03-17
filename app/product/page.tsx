@@ -12,10 +12,18 @@ export const metadata: Metadata = {
 };
 
 async function getCategories() {
-  const res = await fetch("http://localhost:3000/api/categories", {
-    cache: "no-store",
-  })
-  return res.json()
+  try {
+    const categories = await prisma.category.findMany({
+      include: {
+        products: true,
+      },
+    })
+
+    return categories
+  } catch (error) {
+    console.error("DB ERROR:", error)
+    return [] // biar gak crash
+  }
 }
 
 export default async function About() {
@@ -24,7 +32,7 @@ export default async function About() {
   return (
     <main>
       <Header />
-      <ProductSection categories={categories} /> 
+      <ProductSection categories={categories} />
       <Footer />
     </main>
   )
