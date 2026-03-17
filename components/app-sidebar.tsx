@@ -3,6 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useSidebar } from "@/components/ui/sidebar"
 
 import {
   LayoutDashboard,
@@ -42,11 +43,11 @@ const menuItems = [
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname()
+  const { setOpen, setOpenMobile } = useSidebar()
 
   return (
     <Sidebar collapsible="offcanvas" {...props}>
 
-      {/* 🔥 HEADER */}
       <SidebarHeader className="pb-8 border-b px-5 pt-4">
         <Link href="/admin" className="flex items-center gap-3">
 
@@ -68,7 +69,6 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
         </Link>
       </SidebarHeader>
 
-      {/* 🔥 MENU */}
       <SidebarContent className="pt-6 px-3 space-y-2">
 
         {menuItems.map((item) => {
@@ -77,13 +77,16 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
           const Icon = item.icon
 
           return (
-            <Link
-              key={item.title}
-              href={item.url}
-              className={`flex items-center gap-3 p-3 rounded-xl transition
-                ${isActive ? "bg-black text-white" : "hover:bg-gray-100"}
-              `}
-            >
+          <Link
+            key={item.title}
+            href={item.url}
+            onClick={() => {
+              setOpenMobile(false)
+            }}
+            className={`flex items-center gap-3 p-3 rounded-xl transition
+              ${isActive ? "bg-black text-white" : "hover:bg-gray-100"}
+            `}
+          >
 
               {/* ICON */}
               <div className={`${isActive ? "text-white" : "text-gray-600"}`}>
@@ -108,7 +111,6 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
 
       </SidebarContent>
 
-      {/* 🔥 FOOTER */}
       <SidebarFooter className="px-4 pb-6 pt-4 border-t mt-4">
         <NavUser />
       </SidebarFooter>
