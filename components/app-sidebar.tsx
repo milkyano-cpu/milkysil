@@ -2,74 +2,114 @@
 
 import * as React from "react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
-import { NavMain } from "@/components/nav-main"
-import { NavUser } from "@/components/nav-user"
+import {
+  LayoutDashboard,
+  Package,
+  FileText,
+} from "lucide-react"
 
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
-import { CommandIcon, FileTextIcon, FolderIcon } from "lucide-react"
+import { NavUser } from "@/components/nav-user"
 
-const data = {
-  navMain: [
-    {
-      title: "Product",
-      url: "/admin/products",
-      icon: <FolderIcon className="size-5" />,
-    },
-    {
-      title: "Article",
-      url: "/admin/articles",
-      icon: <FileTextIcon className="size-5" />,
-    },
-  ],
-}
+const menuItems = [
+  {
+    title: "Dashboard",
+    url: "/admin",
+    icon: LayoutDashboard,
+    desc: "View overview",
+  },
+  {
+    title: "Products",
+    url: "/admin/products",
+    icon: Package,
+    desc: "Manage products",
+  },
+  {
+    title: "Articles",
+    url: "/admin/articles",
+    icon: FileText,
+    desc: "Manage blogs/news",
+  },
+]
 
 export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname()
+
   return (
     <Sidebar collapsible="offcanvas" {...props}>
 
-      {/* HEADER */}
-      <SidebarHeader className="pb-4 border-b">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton asChild className="p-2">
-              <Link href="/admin" className="flex items-start gap-3 w-full">
-                
-                {/* ICON */}
-                <CommandIcon className="size-7 mt-1" />
+      {/* 🔥 HEADER */}
+      <SidebarHeader className="pb-8 border-b px-5 pt-4">
+        <Link href="/admin" className="flex items-center gap-3">
 
-                {/* TITLE + SUBTITLE */}
-                <div className="flex flex-col leading-tight">
-                  <span className="text-xl font-bold">
-                    Milkysil Admin
-                  </span>
-                  <span className="text-sm text-gray-500">
-                    General & Speciality Chemical Management
-                  </span>
-                </div>
+          {/* LOGO */}
+          <div className="bg-black text-white w-10 h-10 rounded-xl flex items-center justify-center font-bold">
+            ms.
+          </div>
 
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+          {/* TEXT */}
+          <div className="flex flex-col">
+            <span className="text-lg font-bold">
+              Milkysil Admin
+            </span>
+            <span className="text-xs text-gray-500">
+                Chemicals Management
+            </span>
+          </div>
+
+        </Link>
       </SidebarHeader>
 
-      {/* MENU */}
-      <SidebarContent className="pt-4">
-        <NavMain items={data.navMain} />
+      {/* 🔥 MENU */}
+      <SidebarContent className="pt-6 px-3 space-y-2">
+
+        {menuItems.map((item) => {
+          const isActive = pathname === item.url
+
+          const Icon = item.icon
+
+          return (
+            <Link
+              key={item.title}
+              href={item.url}
+              className={`flex items-center gap-3 p-3 rounded-xl transition
+                ${isActive ? "bg-black text-white" : "hover:bg-gray-100"}
+              `}
+            >
+
+              {/* ICON */}
+              <div className={`${isActive ? "text-white" : "text-gray-600"}`}>
+                <Icon size={20} />
+              </div>
+
+              {/* TEXT */}
+              <div className="flex flex-col leading-tight">
+                <span className="font-medium">{item.title}</span>
+                <span
+                  className={`text-xs ${
+                    isActive ? "text-gray-300" : "text-gray-500"
+                  }`}
+                >
+                  {item.desc}
+                </span>
+              </div>
+
+            </Link>
+          )
+        })}
+
       </SidebarContent>
 
-      {/* FOOTER */}
-      <SidebarFooter>
+      {/* 🔥 FOOTER */}
+      <SidebarFooter className="px-4 pb-6 pt-4 border-t mt-4">
         <NavUser />
       </SidebarFooter>
 
