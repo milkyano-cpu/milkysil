@@ -27,7 +27,18 @@ async function getCategories() {
 }
 
 export default async function About() {
-  const categories = await getCategories()
+  const categories = await prisma.category.findMany({
+  select: {
+    id: true,
+    name: true,
+    products: {
+      select: {
+        id: true,
+        name: true,
+      },
+    },
+  },
+})
 
   return (
     <main>
