@@ -1,6 +1,15 @@
 "use client"
 
-import { Mail, Phone, MapPin } from "lucide-react"
+import { useState, useRef } from "react"
+import { Mail, Phone, MapPin, Loader2 } from "lucide-react"
+import { z } from "zod"
+import { toast } from "sonner"
+
+const contactSchema = z.object({
+  nama: z.string().min(1, "Nama wajib diisi"),
+  email: z.string().min(1, "Email wajib diisi").email("Format email tidak valid"),
+  pesan: z.string().min(1, "Pesan wajib diisi"),
+})
 
 const mainDistributor = {
   name: "MENTARI JAYA",
@@ -118,6 +127,76 @@ const distributors = [
 ]
 
 export default function ContactSection() {
+  const [nama, setNama] = useState("")
+  const [email, setEmail] = useState("")
+  const [pesan, setPesan] = useState("")
+  const [loading, setLoading] = useState(false)
+  const initialized = useRef(false)
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+
+    const result = contactSchema.safeParse({ nama, email, pesan })
+    if (!result.success) {
+      result.error.issues.forEach((err) => toast.error(err.message))
+      return
+    }
+
+    setLoading(true)
+    try {
+      if (!initialized.current) {
+        try {
+          const initRes = await fetch(
+            `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/api/form-submissions/init-spreadsheet`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                spreadsheetUrl: process.env.NEXT_PUBLIC_SPREADSHEET_URL,
+                sampleFormData: { nama: "Sample", email: "sample@example.com", pesan: "Sample" },
+              }),
+            }
+          )
+          if (initRes.ok) {
+            initialized.current = true
+          }
+        } catch {
+          // Spreadsheet may already be initialized — continue with submission
+        }
+      }
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/api/form-submissions`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            formData: { nama, email, pesan },
+            spreadsheetUrl: process.env.NEXT_PUBLIC_SPREADSHEET_URL,
+            emailReceiver: process.env.NEXT_PUBLIC_FORM_EMAIL_RECEIVER,
+            metadata: {
+              formType: "contact-form",
+              subject: "New Contact Form - Milkysil",
+            },
+          }),
+        }
+      )
+
+      if (res.status === 201) {
+        toast.success("Pesan berhasil dikirim!")
+        setNama("")
+        setEmail("")
+        setPesan("")
+      } else {
+        const data = await res.json().catch(() => null)
+        toast.error(data?.message || "Gagal mengirim pesan. Silakan coba lagi.")
+      }
+    } catch {
+      toast.error("Terjadi kesalahan jaringan. Silakan coba lagi.")
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const mapEmbed =
     "https://www.google.com/maps?q=Jl%20Babakan%20Ciparay%20No.72%20Bandung&output=embed"
@@ -198,12 +277,14 @@ export default function ContactSection() {
               Kirim Pesan
             </h3>
 
-            <form className="space-y-8">
+            <form className="space-y-8" onSubmit={handleSubmit}>
 
               <div>
                 <label className="text-sm text-gray-500">Nama</label>
                 <input
                   type="text"
+                  value={nama}
+                  onChange={(e) => setNama(e.target.value)}
                   className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-blue-600"
                 />
               </div>
@@ -212,6 +293,8 @@ export default function ContactSection() {
                 <label className="text-sm text-gray-500">Email</label>
                 <input
                   type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-blue-600"
                 />
               </div>
@@ -220,6 +303,8 @@ export default function ContactSection() {
                 <label className="text-sm text-gray-500">Pesan</label>
                 <textarea
                   rows={4}
+                  value={pesan}
+                  onChange={(e) => setPesan(e.target.value)}
                   className="w-full border-b border-gray-300 py-2 focus:outline-none focus:border-blue-600"
                 />
               </div>
@@ -227,9 +312,11 @@ export default function ContactSection() {
               <div className="pt-4 flex justify-end">
                 <button
                   type="submit"
-                  className="bg-[#1674D3] hover:bg-[#245a91] text-white px-10 py-3 rounded-md transition"
+                  disabled={loading}
+                  className="bg-[#1674D3] hover:bg-[#245a91] text-white px-10 py-3 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                 >
-                  Submit
+                  {loading && <Loader2 className="animate-spin" size={18} />}
+                  {loading ? "Mengirim..." : "Submit"}
                 </button>
               </div>
 

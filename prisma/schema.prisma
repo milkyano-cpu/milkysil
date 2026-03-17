@@ -12,6 +12,11 @@ enum UserRole {
   USER
 }
 
+enum ArticleCategory {
+  ARTICLE
+  NEWS
+}
+
 model Category {
   id         Int      @id @default(autoincrement())
   name       String
@@ -46,5 +51,31 @@ model User {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
+  articles Article[]
+
   @@map("users")
+}
+
+model Article {
+  id              String          @id @default(cuid())
+  slug            String          @unique
+  title           String
+  excerpt         String          @db.Text
+  content         String          @db.Text
+  image           String
+  category        ArticleCategory
+  published       Boolean         @default(false)
+  metaTitle       String?
+  metaDescription String?         @db.Text
+
+  authorId String   @map("author_id")
+  author   User     @relation(fields: [authorId], references: [id])
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([category])
+  @@index([published])
+  @@index([slug])
+  @@map("articles")
 }

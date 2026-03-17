@@ -53,10 +53,10 @@ export default function ProductClient({ initialData }: any) {
       return
     }
 
-    setProducts(prev => [
+    setProducts((prev: any[]) => [
       {
         ...data,
-        category: categories.find(c => c.id == categoryId),
+        category: categories.find((c: any) => c.id == categoryId),
       },
       ...prev,
     ])
@@ -85,14 +85,14 @@ export default function ProductClient({ initialData }: any) {
       return
     }
 
-    setProducts(prev =>
-      prev.map(item =>
+    setProducts((prev: any[]) =>
+      prev.map((item: any) =>
         item.id === selected.id
           ? {
               ...item,
               name,
               categoryId,
-              category: categories.find(c => c.id == categoryId),
+              category: categories.find((c: any) => c.id == categoryId),
             }
           : item
       )
@@ -114,7 +114,7 @@ export default function ProductClient({ initialData }: any) {
       return
     }
 
-    setProducts(prev => prev.filter(p => p.id !== id))
+    setProducts((prev: any[]) => prev.filter((p: any) => p.id !== id))
     setToast({ message: "Product deleted!", type: "error" })
   }
 

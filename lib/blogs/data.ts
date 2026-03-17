@@ -1,3 +1,6 @@
+// @deprecated — This static data has been migrated to the database.
+// Use lib/services/article-service.ts instead. Kept for reference only.
+
 export type Blog = {
   id: number
   slug: string

@@ -1,19 +1,17 @@
-"use client"
-
 import Image from "next/image"
-import { blogs, news } from "@/lib/blogs/data"
 import Link from "next/link"
+import { getPublishedArticles } from "@/lib/services/article-service"
 
-type Blog = {
-  id: number
-  title: string
-  date: string
-  description: string
-  image: string
-  category: "BLOG" | "NEWS"
+function isValidImageUrl(url: string): boolean {
+  return url.startsWith("/") || url.startsWith("http://") || url.startsWith("https://")
 }
 
-export default function BlogsSection() {
+export default async function BlogsSection() {
+  const [articles, newsItems] = await Promise.all([
+    getPublishedArticles("ARTICLE"),
+    getPublishedArticles("NEWS"),
+  ])
+
   return (
     <section className="bg-[#F7F9FC] pb-28">
 
@@ -40,34 +38,44 @@ export default function BlogsSection() {
 
 
       {/* BLOG GRID */}
-           <div className="max-w-[1200px] mx-auto px-6 mt-10">
+      <div className="max-w-[1200px] mx-auto px-6 mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14">
 
-          {blogs.map((blog) => (
+          {articles.map((article) => (
 
-            <Link key={blog.id} href={`/blogs/${blog.slug}`}>
+            <Link key={article.id} href={`/blogs/${article.slug}`}>
               <div className="group cursor-pointer hover:opacity-90 transition">
 
                 <div className="overflow-hidden rounded-xl">
-                  <Image
-                    src={blog.image}
-                    alt={blog.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-[220px] object-cover transition duration-300 group-hover:scale-105"
-                  />
+                  {isValidImageUrl(article.image) ? (
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      width={500}
+                      height={300}
+                      className="w-full h-[220px] object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-[220px] bg-gray-200 flex items-center justify-center text-sm text-gray-400">
+                      No image
+                    </div>
+                  )}
                 </div>
 
                 <h3 className="mt-4 font-semibold text-gray-800 text-[17px]">
-                  {blog.title}
+                  {article.title}
                 </h3>
 
                 <p className="text-xs text-gray-400 mt-1">
-                  {blog.date}
+                  {new Date(article.createdAt).toLocaleDateString("id-ID", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
                 </p>
 
                 <p className="text-sm text-gray-600 mt-2 leading-relaxed line-clamp-5">
-                  {blog.description}
+                  {article.excerpt}
                 </p>
 
               </div>
@@ -88,23 +96,27 @@ export default function BlogsSection() {
 
 
       {/* NEWS GRID */}
- <div className="max-w-[1200px] mx-auto px-6 mt-10">
+      <div className="max-w-[1200px] mx-auto px-6 mt-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-14">
 
-          {news.map((item) => (
+          {newsItems.map((item) => (
 
             <Link key={item.id} href={`/blogs/${item.slug}`}>
               <div className="group cursor-pointer hover:opacity-90 transition">
 
                 <div className="relative rounded-2xl overflow-hidden shadow-md">
 
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    width={500}
-                    height={600}
-                    className="w-full h-[350px] object-cover transition duration-300 group-hover:scale-105"
-                  />
+                  {isValidImageUrl(item.image) ? (
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={500}
+                      height={600}
+                      className="w-full h-[350px] object-cover transition duration-300 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="w-full h-[350px] bg-gray-200" />
+                  )}
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
 
@@ -114,14 +126,18 @@ export default function BlogsSection() {
                     </h3>
 
                     <p className="text-xs mt-1 opacity-80">
-                      {item.date}
+                      {new Date(item.createdAt).toLocaleDateString("id-ID", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })}
                     </p>
                   </div>
 
                 </div>
 
                 <p className="text-sm text-gray-600 mt-3 leading-relaxed line-clamp-5">
-                  {item.description}
+                  {item.excerpt}
                 </p>
 
               </div>
