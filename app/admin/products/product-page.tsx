@@ -3,8 +3,21 @@
 import { useState, useMemo, useEffect } from "react"
 import { Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react"
 
+type Category = {
+  id: number
+  name: string
+}
+
+type Product = {
+  id: number
+  name: string
+  categoryId: number
+  category?: Category
+  createdAt: string
+}
+
 export default function ProductClient({ initialData }: any) {
-  const [products, setProducts] = useState(initialData)
+  const [products, setProducts] = useState<Product[]>(initialData)
 
   const [search, setSearch] = useState("")
   const [sort, setSort] = useState("newest")
@@ -56,7 +69,7 @@ export default function ProductClient({ initialData }: any) {
     setProducts(prev => [
       {
         ...data,
-        category: categories.find(c => c.id == categoryId),
+        category: categories.find(c => c.id === Number(categoryId)),
       },
       ...prev,
     ])
@@ -85,18 +98,18 @@ export default function ProductClient({ initialData }: any) {
       return
     }
 
-    setProducts(prev =>
-      prev.map(item =>
-        item.id === selected.id
-          ? {
-              ...item,
-              name,
-              categoryId,
-              category: categories.find(c => c.id == categoryId),
-            }
-          : item
-      )
+  setProducts(prev =>
+    prev.map(item =>
+      item.id === selected.id
+        ? {
+            ...item,
+            name,
+            categoryId: Number(categoryId),
+            category: categories.find(c => c.id === Number(categoryId)),
+          }
+        : item
     )
+  )
 
     setToast({ message: "Product updated!", type: "success" })
     setEditOpen(false)
