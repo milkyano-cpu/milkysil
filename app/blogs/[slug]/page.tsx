@@ -98,8 +98,7 @@ export default async function BlogDetail({ params }: Props) {
             priority
             className="
               w-full
-              h-[260px] sm:h-[320px] md:h-[420px]
-              object-cover
+              h-auto
               rounded-2xl
             "
           />
