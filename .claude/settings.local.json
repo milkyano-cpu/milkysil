@@ -21,7 +21,9 @@
       "Bash(PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=\"yes\" npx prisma migrate reset:*)",
       "Bash(ls:*)",
       "Bash(curl:*)",
-      "Bash(curl -sL \"https://milkysil.com/assets/img/Blog-20260124013918.jpg\" -o caustic-soda.jpg)"
+      "Bash(curl -sL \"https://milkysil.com/assets/img/Blog-20260124013918.jpg\" -o caustic-soda.jpg)",
+      "Bash(npm ls:*)",
+      "Bash(npm show:*)"
     ]
   }
 }
