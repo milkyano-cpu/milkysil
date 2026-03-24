@@ -1,6 +1,10 @@
+"use client"
+
+import { useState } from "react"
 import Image from "next/image"
 
 const AboutSection = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null)
   return (
     <section className="bg-[#F7F9FC] pb-28">
 
@@ -243,6 +247,114 @@ const AboutSection = () => {
         </div>
 
       </div>
+
+    <div className="max-w-[90%] md:max-w-[900px] mx-auto px-4 md:px-6 mt-36">
+
+        <div className="text-center mb-10">
+          <h2 className="text-[28px] md:text-[34px] font-semibold text-primary">
+            GALERI PHOTO
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+          {[
+          {
+            src: "/gallery.png",
+            title: "TIRE POLISH S320 LV",
+            subtitle: "CV. Milky Makmur Sejahtera",
+          },
+          {
+            src: "/gallery.png",
+            title: "SNOW WASH SHAMPOO",
+            subtitle: "CV. Milky Makmur Sejahtera",
+          },
+          {
+            src: "/gallery.png",
+            title: "SABUN CUCI PIRING",
+            subtitle: "CV. Milky Makmur Sejahtera",
+          },
+          {
+            src: "/gallery.png",
+            title: "CARBOL LYSOL",
+            subtitle: "CV. Milky Makmur Sejahtera",
+          },
+          {
+            src: "/gallery.png",
+            title: "SODA API",
+            subtitle: "CV. Milky Makmur Sejahtera",
+          },
+          {
+            src: "/gallery.png",
+            title: "WATER TREATMENT",
+            subtitle: "CV. Milky Makmur Sejahtera",
+          },
+        ].map((item, index) => (
+          <div
+            key={index}
+            className="relative group cursor-pointer"
+            onClick={() => setSelectedImage(item.src)}
+          >
+            <Image
+              src={item.src}
+              alt={item.title}
+              width={400}
+              height={250}
+              className="w-full h-[200px] object-cover rounded-xl shadow-md"
+            />
+
+            {/* 🔥 OVERLAY BARU */}
+            <div className="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center px-4">
+
+              <h3 className="text-lg font-semibold mb-2">
+                {item.title}
+              </h3>
+
+              <p className="text-sm italic mb-4">
+                {item.subtitle}
+              </p>
+
+              <div className="bg-black px-4 py-2 text-sm font-semibold">
+                ZOOM
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+
+        </div>
+      </div>
+
+      {/* ======================= */}
+      {/* MODAL ZOOM */}
+      {/* ======================= */}
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="relative max-w-4xl w-full px-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={selectedImage}
+              alt="zoom"
+              width={800}
+              height={500}
+              className="w-full h-auto rounded-lg"
+            />
+
+            <button
+              onClick={() => setSelectedImage(null)}
+              className="absolute top-2 right-2 bg-white text-black px-3 py-1 rounded"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
 
     </section>
   )
