@@ -106,7 +106,7 @@ export default async function BlogDetail({ params }: Props) {
       )}
 
       {/* ================= CONTENT ================= */}
-      <div className="max-w-[900px] mx-auto px-4 md:px-6 mt-10 md:mt-14">
+    <div className="max-w-[900px] mx-auto px-5 sm:px-6 md:px-6 mt-10 md:mt-14">
 
         {/* CARD WRAPPER */}
         <div className="rounded-2xl space-y-6 md:space-y-8">
@@ -136,24 +136,38 @@ export default async function BlogDetail({ params }: Props) {
 
           {/* ARTICLE BODY */}
           <div
-            className="
+              className="
               prose prose-sm md:prose-base max-w-none
 
-              prose-p:leading-relaxed md:prose-p:leading-loose
-              prose-p:text-[#1E3E6D]
+                prose-p:leading-relaxed md:prose-p:leading-loose
+                prose-p:text-[#1E3E6D]
 
-              prose-headings:text-primary
-              prose-headings:font-bold
+                prose-headings:text-primary
+                prose-headings:font-bold
 
-              prose-h2:text-xl md:prose-h2:text-2xl
-              prose-h3:text-lg md:prose-h3:text-xl
+                prose-h2:text-xl md:prose-h2:text-2xl
+                prose-h3:text-lg md:prose-h3:text-xl
 
-              prose-a:text-blue-600 prose-a:underline
+                prose-a:text-blue-600 prose-a:underline
 
-              prose-img:rounded-xl prose-img:my-6
+                prose-li:marker:text-primary
 
-              prose-li:marker:text-primary
-            "
+                prose-p:text-justify
+                prose-li:text-justify
+
+                prose-img:rounded-xl
+                prose-img:my-6
+                prose-img:mx-auto
+                prose-img:max-w-[90%]
+                sm:prose-img:max-w-[80%]
+                md:prose-img:max-w-[650px]
+                lg:prose-img:max-w-[700px]
+
+                prose-li:marker:text-primary
+
+                prose-p:text-justify
+                prose-li:text-justify
+              "
             dangerouslySetInnerHTML={{
               __html: cleanBrokenImages(article.content),
             }}
