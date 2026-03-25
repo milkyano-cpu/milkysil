@@ -4,7 +4,43 @@ import { useState } from "react"
 import Image from "next/image"
 
 const AboutSection = () => {
-  const [selectedImage, setSelectedImage] = useState<string | null>(null)
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  // ✅ PAGINATION STATE
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 9;
+
+  // ✅ DATA GALLERY (20 ITEM, TITLE BEDA)
+  const galleryItems = [
+    { src: "/gallery1.png", title: "SABUN CUCI PIRING JERUK NIPIS" },
+    { src: "/gallery2.png", title: "GLASS CLEANER" },
+    { src: "/gallery3.png", title: "FLOOR CLEANER APPLE" },
+    { src: "/gallery4.png", title: "HANDSOAP STRAWBERRY" },
+    { src: "/gallery5.png", title: "SHAMPOO MOBIL" },
+    { src: "/gallery6.png", title: "TIRE POLISH S CONCENTRATE 150 KG" },
+    { src: "/gallery7.png", title: "TIRE POLISH 297 HV" },
+    { src: "/gallery8.png", title: "TIRE POLISHS297HV" },
+    { src: "/gallery9.png", title: "TIRE POLISH 168 HV" },
+    { src: "/gallery10.png", title: "TIRE POLISH S36PTK" },
+    { src: "/gallery11.png", title: "TIRE POLISH S36LV" },
+    // { src: "/gallery12.png", title: "CAUSTIC SODA" },
+    { src: "/gallery13.png", title: "TIRE POLISH S36HVM" },
+    { src: "/gallery14.png", title: "TIRE POLISH S36HV" },
+    { src: "/gallery15.png", title: "TIRE POLISH S33 HV" },
+    { src: "/gallery16.png", title: "TIRE POLISH S30HV" },
+    { src: "/gallery17.png", title: "TIRE POLISH S22SKS" },
+    { src: "/gallery18.png", title: "TIRE POLISH S168LV" },
+    { src: "/gallery19.png", title: "TIRE POLISH S108SP" },
+    { src: "/gallery20.png", title: "TIRE POLISH S40LV" },
+  ];
+
+  const totalPages = Math.ceil(galleryItems.length / itemsPerPage);
+
+  const currentItems = galleryItems.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <section className="bg-[#F7F9FC] pb-28">
 
@@ -250,85 +286,98 @@ const AboutSection = () => {
 
     <div className="max-w-[90%] md:max-w-[900px] mx-auto px-4 md:px-6 mt-36">
 
+        {/* TITLE */}
         <div className="text-center mb-10">
           <h2 className="text-[28px] md:text-[34px] font-semibold text-primary">
-            GALERI PHOTO
+            GALLERY
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
 
-          {[
-          {
-            src: "/gallery.png",
-            title: "TIRE POLISH S320 LV",
-            subtitle: "CV. Milky Makmur Sejahtera",
-          },
-          {
-            src: "/gallery.png",
-            title: "SNOW WASH SHAMPOO",
-            subtitle: "CV. Milky Makmur Sejahtera",
-          },
-          {
-            src: "/gallery.png",
-            title: "SABUN CUCI PIRING",
-            subtitle: "CV. Milky Makmur Sejahtera",
-          },
-          {
-            src: "/gallery.png",
-            title: "CARBOL LYSOL",
-            subtitle: "CV. Milky Makmur Sejahtera",
-          },
-          {
-            src: "/gallery.png",
-            title: "SODA API",
-            subtitle: "CV. Milky Makmur Sejahtera",
-          },
-          {
-            src: "/gallery.png",
-            title: "WATER TREATMENT",
-            subtitle: "CV. Milky Makmur Sejahtera",
-          },
-        ].map((item, index) => (
-          <div
-            key={index}
-            className="relative group cursor-pointer"
-            onClick={() => setSelectedImage(item.src)}
-          >
-            <Image
-              src={item.src}
-              alt={item.title}
-              width={400}
-              height={250}
-              className="w-full h-[200px] object-cover rounded-xl shadow-md"
-            />
+          {currentItems.map((item, index) => (
+            <div
+              key={index}
+              className="relative group cursor-pointer overflow-hidden rounded-xl"
+              onClick={() => setSelectedImage(item.src)}
+            >
+              {/* IMAGE */}
+              <Image
+                src={item.src}
+                alt={item.title}
+                width={400}
+                height={250}
+                className="
+                  w-full
+                  h-[140px] sm:h-[150px] md:h-[200px]
+                  object-cover
+                  transition duration-500 group-hover:scale-105
+                  shadow-md
+                "
+              />
 
-            {/* 🔥 OVERLAY BARU */}
-            <div className="absolute inset-0 bg-blue-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center px-4">
+              {/* OVERLAY */}
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col items-center justify-center text-white text-center px-4">
 
-              <h3 className="text-lg font-semibold mb-2">
-                {item.title}
-              </h3>
+                <h3 className="text-sm md:text-lg font-semibold mb-1 line-clamp-2">
+                  {item.title}
+                </h3>
 
-              <p className="text-sm italic mb-4">
-                {item.subtitle}
-              </p>
+                <p className="text-sm italic mb-3">
+                  CV. Milky Makmur Sejahtera
+                </p>
 
-              <div className="bg-black px-4 py-2 text-sm font-semibold">
-                ZOOM
+                <div className="bg-white text-black px-4 py-1 text-sm font-semibold rounded">
+                  ZOOM
+                </div>
+
               </div>
-
             </div>
+          ))}
 
-          </div>
-        ))}
+        </div>
+
+        {/* PAGINATION */}
+        <div className="flex justify-center items-center gap-3 mt-10">
+
+          {/* PREV */}
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            className="px-2 text-gray-400 hover:text-black transition cursor-pointer"
+          >
+            ◀
+          </button>
+
+          {/* NUMBERS */}
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={`px-3 py-1 transition cursor-pointer ${
+                currentPage === i + 1
+                  ? "text-blue-600 font-semibold"
+                  : "text-gray-400 hover:text-black"
+              }`}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          {/* NEXT */}
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            className="px-2 text-gray-400 hover:text-black transition cursor-pointer"
+          >
+            ▶
+          </button>
 
         </div>
       </div>
 
-      {/* ======================= */}
-      {/* MODAL ZOOM */}
-      {/* ======================= */}
+      {/* MODAL */}
       {selectedImage && (
         <div
           className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
@@ -348,7 +397,7 @@ const AboutSection = () => {
 
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-2 right-2 bg-white text-black px-3 py-1 rounded"
+              className="absolute top-3 right-3 bg-white text-black px-3 py-1 rounded shadow"
             >
               ✕
             </button>
