@@ -222,12 +222,14 @@ const FeaturedProducts = () => {
                         Lihat Detail Produk
                       </Link>
 
-                      <Link
-                        href="/contact"
+                      <a
+                        href="https://wa.me/628170297297"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="border border-white px-6 py-3 rounded-lg font-medium"
                       >
                         Minta Harga Grosir
-                      </Link>
+                      </a>
 
                     </div>
 
@@ -275,12 +277,14 @@ const FeaturedProducts = () => {
                           Lihat Detail Produk
                         </Link>
 
-                        <Link
-                          href="/contact"
+                        <a
+                          href="https://wa.me/628170297297"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="border border-white px-6 py-3 rounded-lg font-medium"
                         >
                           Minta Harga Grosir
-                        </Link>
+                        </a>
 
                       </div>
 

@@ -87,12 +87,14 @@ const Header = () => {
             )
           })}
           <li>
-            <Link
-              href="/contact"
+            <a
+              href="https://wa.me/628170297297"
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(buttonVariants({ variant: 'cta', size: 'cta' }))}
             >
               Request a Quote
-            </Link>
+            </a>
           </li>
         </ul>
 
@@ -144,15 +146,17 @@ const Header = () => {
             </nav>
             <div className="mt-auto p-4">
               <SheetClose asChild>
-                <Link
-                  href="/contact"
+                <a
+                  href="https://wa.me/628170297297"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: 'cta', size: 'cta' }),
                     'w-full'
                   )}
                 >
                   Request a Quote
-                </Link>
+                </a>
               </SheetClose>
             </div>
           </SheetContent>
