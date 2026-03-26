@@ -43,12 +43,14 @@ const CTA = () => {
             dan layanan profesional.
           </p>
 
-          <Link
-            href="/contact"
-            className="inline-block mt-6 bg-[#1E3E6D] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
+          <a
+            href="https://wa.me/628170297297"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-6 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
           >
             Minta Penawaran Sekarang
-          </Link>
+          </a>
 
         </div>
 
@@ -68,12 +70,14 @@ const CTA = () => {
             dan layanan profesional.
           </p>
 
-          <Link
-            href="/contact"
-            className="inline-block mt-8 bg-[#1E3E6D] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
-          >
-            Minta Penawaran Sekarang
-          </Link>
+          <a
+              href="https://wa.me/628170297297"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-8 bg-primary text-white px-6 py-3 rounded-lg font-medium hover:bg-[#3568ae] transition"
+            >
+              Minta Penawaran Sekarang
+          </a>
 
         </div>
 
