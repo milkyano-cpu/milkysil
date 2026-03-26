@@ -17,16 +17,19 @@ const AboutSection = () => {
     { src: "/gallery3.png", title: "FLOOR CLEANER APPLE" },
     { src: "/gallery4.png", title: "HANDSOAP STRAWBERRY" },
     { src: "/gallery5.png", title: "SHAMPOO MOBIL" },
+    { src: "/gallery23.png", title: "CARBOL SEREH" },
     { src: "/gallery6.png", title: "TIRE POLISH S CONCENTRATE 150 KG" },
-    { src: "/gallery7.png", title: "TIRE POLISH 297 HV" },
-    { src: "/gallery8.png", title: "TIRE POLISHS297HV" },
-    { src: "/gallery9.png", title: "TIRE POLISH 168 HV" },
+    { src: "/gallery7.png", title: "TIRE POLISH 297LV" },
+    { src: "/gallery8.png", title: "TIRE POLISH 297HV" },
+    { src: "/gallery9.png", title: "TIRE POLISH 168HV" },
     { src: "/gallery10.png", title: "TIRE POLISH S36PTK" },
     { src: "/gallery11.png", title: "TIRE POLISH S36LV" },
-    // { src: "/gallery12.png", title: "CAUSTIC SODA" },
+    { src: "/gallery12.png", title: "TIRE POLISH S303B" },
+    { src: "/gallery21.png", title: "TIRE POLISH S320HV" },
+    { src: "/gallery22.png", title: "TIRE POLISH S320LV" },
     { src: "/gallery13.png", title: "TIRE POLISH S36HVM" },
     { src: "/gallery14.png", title: "TIRE POLISH S36HV" },
-    { src: "/gallery15.png", title: "TIRE POLISH S33 HV" },
+    { src: "/gallery15.png", title: "TIRE POLISH S33HV" },
     { src: "/gallery16.png", title: "TIRE POLISH S30HV" },
     { src: "/gallery17.png", title: "TIRE POLISH S22SKS" },
     { src: "/gallery18.png", title: "TIRE POLISH S168LV" },
@@ -384,20 +387,20 @@ const AboutSection = () => {
           onClick={() => setSelectedImage(null)}
         >
           <div
-            className="relative max-w-4xl w-full px-4"
+            className="relative w-full max-w-[500px] px-4"
             onClick={(e) => e.stopPropagation()}
           >
             <Image
               src={selectedImage}
               alt="zoom"
-              width={800}
-              height={500}
+              width={500}
+              height={300}
               className="w-full h-auto rounded-lg"
             />
 
             <button
               onClick={() => setSelectedImage(null)}
-              className="absolute top-3 right-3 bg-white text-black px-3 py-1 rounded shadow"
+              className="absolute top-3 right-3 bg-white text-black px-3 py-1 rounded shadow cursor-pointer"
             >
               ✕
             </button>
