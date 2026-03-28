@@ -222,12 +222,14 @@ const FeaturedProducts = () => {
                         Lihat Detail Produk
                       </Link>
 
-                      <Link
-                        href="/contact"
+                      <a
+                        href="https://wa.me/628170297297?text=Halo%20Milkysil%2C%20saya%20mengunjungi%20website%20Milkysil%20dan%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20produk%20yang%20tersedia.%20Mohon%20bantuannya.%20Terima%20kasih."
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="border border-white px-6 py-3 rounded-lg font-medium"
                       >
                         Minta Harga Grosir
-                      </Link>
+                      </a>
 
                     </div>
 
@@ -275,12 +277,14 @@ const FeaturedProducts = () => {
                           Lihat Detail Produk
                         </Link>
 
-                        <Link
-                          href="/contact"
+                        <a
+                          href="https://wa.me/628170297297?text=Halo%20Milkysil%2C%20saya%20mengunjungi%20website%20Milkysil%20dan%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20produk%20yang%20tersedia.%20Mohon%20bantuannya.%20Terima%20kasih."
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="border border-white px-6 py-3 rounded-lg font-medium"
                         >
                           Minta Harga Grosir
-                        </Link>
+                        </a>
 
                       </div>
 

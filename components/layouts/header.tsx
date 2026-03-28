@@ -146,12 +146,14 @@ const Header = () => {
             )
           })}
           <li>
-            <Link
-              href="/contact"
+            <a
+              href="https://wa.me/628170297297?text=Halo%20Milkysil%2C%20saya%20mengunjungi%20website%20Milkysil%20dan%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20produk%20yang%20tersedia.%20Mohon%20bantuannya.%20Terima%20kasih."
+              target="_blank"
+              rel="noopener noreferrer"
               className={cn(buttonVariants({ variant: 'cta', size: 'cta' }))}
             >
               Request a Quote
-            </Link>
+            </a>
           </li>
         </ul>
 
@@ -245,15 +247,17 @@ const Header = () => {
             </nav>
             <div className="mt-auto p-4">
               <SheetClose asChild>
-                <Link
-                  href="/contact"
+                <a
+                  href="https://wa.me/628170297297?text=Halo%20Milkysil%2C%20saya%20mengunjungi%20website%20Milkysil%20dan%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20produk%20yang%20tersedia.%20Mohon%20bantuannya.%20Terima%20kasih."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: 'cta', size: 'cta' }),
                     'w-full'
                   )}
                 >
                   Request a Quote
-                </Link>
+                </a>
               </SheetClose>
             </div>
           </SheetContent>
