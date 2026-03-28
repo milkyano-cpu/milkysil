@@ -1,0 +1,37 @@
+"use client"
+
+import { MessageCircle } from "lucide-react"
+
+interface WhatsAppCTAProps {
+  productName: string
+  sticky?: boolean
+}
+
+const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER || "6281221aborneot"
+
+export default function WhatsAppCTA({ productName, sticky = false }: WhatsAppCTAProps) {
+  const message = `Halo, saya tertarik dengan produk *${productName}* dari Milkysil. Bisa minta informasi harga dan ketersediaannya?`
+  const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(message)}`
+
+  const button = (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold py-3 px-6 rounded-xl transition w-full shadow-lg"
+    >
+      <MessageCircle size={20} />
+      Minta Penawaran
+    </a>
+  )
+
+  if (sticky) {
+    return (
+      <div className="fixed bottom-0 left-0 right-0 z-40 p-3 bg-white/90 backdrop-blur border-t md:hidden">
+        {button}
+      </div>
+    )
+  }
+
+  return button
+}

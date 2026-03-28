@@ -1,26 +1,30 @@
-"use client";
+"use client"
 
-import { useState, useMemo } from "react";
-import { useRouter } from "next/navigation";
-import Image from "next/image";
+import { useState, useMemo } from "react"
+import { useRouter } from "next/navigation"
+import Image from "next/image"
+import Link from "next/link"
 
 type Product = {
-  id: number;
-  name: string;
-};
+  id: number
+  name: string
+  slug: string
+  images: string[]
+  published: boolean
+}
 
 type Category = {
-  id: number;
-  name: string;
-  products: Product[];
-};
+  id: number
+  name: string
+  products: Product[]
+}
 
 type ProductCategory = {
-  name: string;
-  icon: string;
-  iconWhite: string;
-  products: Record<string, string[]>;
-};
+  name: string
+  icon: string
+  iconWhite: string
+  products: Record<string, { name: string; slug: string }[]>
+}
 
 const categoryIcons: Record<
   string,
@@ -54,37 +58,34 @@ const categoryIcons: Record<
     icon: "/other-icon.png",
     iconWhite: "/other-white-icon.png",
   },
-};
+}
 
 function buildCategories(data: Category[]): ProductCategory[] {
   return data.map((cat) => {
-    const grouped: Record<string, string[]> = {};
+    const grouped: Record<string, { name: string; slug: string }[]> = {}
 
     cat.products.forEach((p) => {
-      const letter = p.name.charAt(0).toUpperCase();
-
-      if (!grouped[letter]) grouped[letter] = [];
-      grouped[letter].push(p.name);
-    });
+      const letter = p.name.charAt(0).toUpperCase()
+      if (!grouped[letter]) grouped[letter] = []
+      grouped[letter].push({ name: p.name, slug: p.slug })
+    })
 
     return {
       name: cat.name,
       icon: categoryIcons[cat.name]?.icon || "",
       iconWhite: categoryIcons[cat.name]?.iconWhite || "",
       products: grouped,
-    };
-  });
+    }
+  })
 }
 
 export default function ProductSection({
   categories: serverData,
 }: {
-  categories: Category[];
+  categories: Category[]
 }) {
-
-  const router = useRouter();
-
-  const [activeTab, setActiveTab] = useState(0);
+  const router = useRouter()
+  const [activeTab, setActiveTab] = useState(0)
 
   const tabKeys = [
     "fiberglass",
@@ -94,25 +95,22 @@ export default function ProductSection({
     "household",
     "flavour",
     "others",
-  ];
+  ]
 
   const categories = useMemo(
     () => buildCategories(serverData),
     [serverData]
-  );
+  )
 
-  const activeProducts =
-    categories[activeTab]?.products || {};
+  const activeProducts = categories[activeTab]?.products || {}
 
   return (
     <section className="bg-[#F7F9FC] pb-24">
-
       {/* HERO */}
       <div className="bg-primary pt-24 pb-36 rounded-b-[60px] text-center text-white">
         <h1 className="text-4xl font-bold">List Product</h1>
-
         <p className="mt-3 text-white text-sm">
-          <span className="font-semibold">MILKYSIL®</span> trusted brands of the
+          <span className="font-semibold">MILKYSIL&reg;</span> trusted brands of the
           nation`s pride
         </p>
       </div>
@@ -124,10 +122,8 @@ export default function ProductSection({
             <button
               key={index}
               onClick={() => {
-                setActiveTab(index);
-
-                // optional: update URL tanpa reload
-                router.push(`/product?tab=${tabKeys[index]}`);
+                setActiveTab(index)
+                router.push(`/product?tab=${tabKeys[index]}`)
               }}
               className={`flex items-center justify-center gap-2 flex-shrink-0
                 w-[160px] md:w-[180px]
@@ -142,15 +138,12 @@ export default function ProductSection({
                 }`}
             >
               <Image
-                src={
-                  activeTab === index ? cat.iconWhite : cat.icon
-                }
+                src={activeTab === index ? cat.iconWhite : cat.icon}
                 alt={cat.name}
                 width={20}
                 height={20}
                 className="w-5 h-5 object-contain"
               />
-
               {cat.name}
             </button>
           ))}
@@ -159,28 +152,26 @@ export default function ProductSection({
 
       {/* PRODUCT LIST */}
       <div className="max-w-[1100px] mx-auto px-6 mt-14 space-y-10">
-        {Object.entries(activeProducts).map(
-          ([letter, items]) => (
-            <div key={letter} className="flex gap-8 items-start">
-              <div className="text-gray-300 text-xl font-semibold min-w-[60px]">
-                #{letter}
-              </div>
-
-              <div className="flex flex-wrap gap-4">
-                {items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="px-6 py-3 rounded-full bg-white shadow text-primary text-sm font-semibold"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
+        {Object.entries(activeProducts).map(([letter, items]) => (
+          <div key={letter} className="flex gap-8 items-start">
+            <div className="text-gray-300 text-xl font-semibold min-w-[60px]">
+              #{letter}
             </div>
-          )
-        )}
-      </div>
 
+            <div className="flex flex-wrap gap-4">
+              {items.map((item, index) => (
+                <Link
+                  key={index}
+                  href={`/product/${item.slug}`}
+                  className="px-6 py-3 rounded-full bg-white shadow text-primary text-sm font-semibold hover:bg-blue hover:text-white transition"
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
-  );
+  )
 }

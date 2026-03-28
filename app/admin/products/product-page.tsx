@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
+import Link from "next/link"
 import { Pencil, Trash2, ChevronLeft, ChevronRight } from "lucide-react"
 
 type Category = {
@@ -11,27 +12,19 @@ type Category = {
 type Product = {
   id: number
   name: string
+  slug: string
+  images: string[]
+  published: boolean
   categoryId: number
   category?: Category
   createdAt: string
 }
 
-export default function ProductClient({ initialData }: any) {
+export default function ProductClient({ initialData }: { initialData: Product[] }) {
   const [products, setProducts] = useState<Product[]>(initialData)
-
   const [search, setSearch] = useState("")
-  const [sort, setSort] = useState("newest")
   const [page, setPage] = useState(1)
-
-  const [toast, setToast] = useState<any>(null)
-
-  const [open, setOpen] = useState(false)
-  const [editOpen, setEditOpen] = useState(false)
-  const [selected, setSelected] = useState<any>(null)
-
-  const [name, setName] = useState("")
-  const [categoryId, setCategoryId] = useState("")
-  const [categories, setCategories] = useState<any[]>([])
+  const [toast, setToast] = useState<{ message: string; type: string } | null>(null)
 
   const pageSize = 10
 
@@ -42,106 +35,27 @@ export default function ProductClient({ initialData }: any) {
     }
   }, [toast])
 
-  useEffect(() => {
-    fetch("/api/categories")
-      .then(res => res.json())
-      .then(setCategories)
-  }, [])
-
-  async function handleSubmit() {
-    if (!name || !categoryId) {
-      setToast({ message: "Please fill all fields", type: "warning" })
-      return
-    }
-
-    const res = await fetch("/api/products", {
-      method: "POST",
-      body: JSON.stringify({ name: name.trim(), categoryId }),
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      setToast({ message: data.error, type: "error" })
-      return
-    }
-
-    setProducts((prev: any[]) => [
-      {
-        ...data,
-        category: categories.find(c => c.id === Number(categoryId)),
-      },
-      ...prev,
-    ])
-
-    setToast({ message: "Product added!", type: "success" })
-    setOpen(false)
-    setName("")
-    setCategoryId("")
-  }
-
-  function handleEdit(item: any) {
-    setSelected(item)
-    setName(item.name)
-    setCategoryId(item.categoryId)
-    setEditOpen(true)
-  }
-
-  async function handleUpdate() {
-    const res = await fetch(`/api/products/${selected.id}`, {
-      method: "PUT",
-      body: JSON.stringify({ name, categoryId }),
-    })
-
-    if (!res.ok) {
-      setToast({ message: "Update failed", type: "error" })
-      return
-    }
-
-  setProducts(prev =>
-    prev.map(item =>
-      item.id === selected.id
-        ? {
-            ...item,
-            name,
-            categoryId: Number(categoryId),
-            category: categories.find(c => c.id === Number(categoryId)),
-          }
-        : item
-    )
-  )
-
-    setToast({ message: "Product updated!", type: "success" })
-    setEditOpen(false)
-  }
-
   async function handleDelete(id: number) {
     if (!confirm("Delete this product?")) return
 
-    const res = await fetch(`/api/products/${id}`, {
-      method: "DELETE",
-    })
+    const res = await fetch(`/api/products/${id}`, { method: "DELETE" })
 
     if (!res.ok) {
       setToast({ message: "Delete failed", type: "error" })
       return
     }
 
-    setProducts((prev: any[]) => prev.filter((p: any) => p.id !== id))
-    setToast({ message: "Product deleted!", type: "error" })
+    setProducts((prev) => prev.filter((p) => p.id !== id))
+    setToast({ message: "Product deleted!", type: "success" })
   }
 
   const filtered = useMemo(() => {
-    let data = [...products]
-
-    if (search) {
-      data = data.filter(item =>
+    if (!search) return products
+    return products.filter(
+      (item) =>
         item.name.toLowerCase().includes(search.toLowerCase()) ||
         item.category?.name.toLowerCase().includes(search.toLowerCase())
-      )
-    }
-
-    return data
+    )
   }, [search, products])
 
   const totalPages = Math.ceil(filtered.length / pageSize)
@@ -156,21 +70,18 @@ export default function ProductClient({ initialData }: any) {
 
   return (
     <div className="space-y-6 mt-6">
-
-    {/* TOAST */}
-        {toast && (
+      {/* TOAST */}
+      {toast && (
         <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
-            <div
-            className={`px-6 py-3 rounded-lg text-white shadow-lg
-                ${toast.type === "success" && "bg-green-500"}
-                ${toast.type === "error" && "bg-red-500"}
-                ${toast.type === "warning" && "bg-yellow-500"}
-            `}
-            >
+          <div
+            className={`px-6 py-3 rounded-lg text-white shadow-lg ${
+              toast.type === "success" ? "bg-green-500" : "bg-red-500"
+            }`}
+          >
             {toast.message}
-            </div>
+          </div>
         </div>
-        )}
+      )}
 
       {/* HEADER */}
       <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
@@ -181,69 +92,84 @@ export default function ProductClient({ initialData }: any) {
           </p>
         </div>
 
-        <button
-          onClick={() => {
-            setName("")
-            setCategoryId("")
-            setOpen(true)
-          }}
-          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 cursor-pointer"
+        <Link
+          href="/admin/products/create"
+          className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 text-center"
         >
           + Add New Product
-        </button>
+        </Link>
       </div>
 
       {/* SEARCH */}
-      <div className="flex gap-3">
+      <div>
         <input
           className="border w-full px-4 py-2 rounded"
-          placeholder="Search..."
+          placeholder="Search products..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-
-        <select
-          value={sort}
-          onChange={(e) => setSort(e.target.value)}
-          className="border px-3 py-2 rounded cursor-pointer hover:bg-gray-100"
-        >
-          <option value="newest">Newest</option>
-          <option value="oldest">Oldest</option>
-          <option value="a-z">A-Z</option>
-          <option value="z-a">Z-A</option>
-        </select>
       </div>
 
-      {/* ✅ TABLE (DESKTOP) */}
+      {/* TABLE (DESKTOP) */}
       <div className="hidden sm:block border rounded overflow-hidden">
         <table className="w-full text-sm">
           <thead className="bg-gray-100">
             <tr>
+              <th className="p-3 text-left w-12"></th>
               <th className="p-3 text-left">Product</th>
               <th className="p-3 text-left">Category</th>
+              <th className="p-3 text-left">Status</th>
               <th className="p-3 text-left">Created</th>
               <th className="p-3 text-right">Action</th>
             </tr>
           </thead>
-
           <tbody>
-            {paginatedData.map((item: any) => (
-              <tr key={item.id} className="border-t ">
-                <td className="p-3">{item.name}</td>
+            {paginatedData.map((item) => (
+              <tr key={item.id} className="border-t">
+                <td className="p-3">
+                  {item.images?.[0] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.images[0]}
+                      alt=""
+                      className="w-10 h-10 rounded object-cover"
+                    />
+                  ) : (
+                    <div className="w-10 h-10 rounded bg-gray-100" />
+                  )}
+                </td>
+                <td className="p-3 font-medium">{item.name}</td>
                 <td className="p-3">{item.category?.name}</td>
                 <td className="p-3">
-                    {new Date(item.createdAt).toLocaleDateString("en-GB", {
-                        day: "2-digit",
-                        month: "long",
-                        year: "numeric",
-                    })}
+                  <span
+                    className={`inline-block px-2 py-0.5 rounded text-xs font-medium ${
+                      item.published
+                        ? "bg-green-100 text-green-700"
+                        : "bg-gray-100 text-gray-500"
+                    }`}
+                  >
+                    {item.published ? "Published" : "Draft"}
+                  </span>
+                </td>
+                <td className="p-3">
+                  {new Date(item.createdAt).toLocaleDateString("en-GB", {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric",
+                  })}
                 </td>
                 <td className="p-3 text-right">
                   <div className="flex justify-end gap-2">
-                    <button onClick={() => handleEdit(item)} className="cursor-pointer p-2 rounded hover:bg-gray-100">
+                    <Link
+                      href={`/admin/products/${item.id}/edit`}
+                      className="p-2 rounded hover:bg-gray-100"
+                    >
                       <Pencil size={20} />
-                    </button>
-                    <button onClick={() => handleDelete(item.id)} className="cursor-pointer text-red-600 hover:bg-red-100 p-2 rounded">
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(item.id)}
+                      className="cursor-pointer text-red-600 hover:bg-red-100 p-2 rounded"
+                    >
                       <Trash2 size={20} />
                     </button>
                   </div>
@@ -256,16 +182,39 @@ export default function ProductClient({ initialData }: any) {
 
       {/* LIST (MOBILE) */}
       <div className="border rounded sm:hidden">
-        {paginatedData.map((item: any) => (
-          <div key={item.id} className="p-4 border-b">
-            <p className="font-semibold">{item.name}</p>
-            <p className="text-sm text-gray-500">{item.category?.name}</p>
-
-            <div className="flex gap-2 justify-end mt-2">
-              <button onClick={() => handleEdit(item)}>
+        {paginatedData.map((item) => (
+          <div key={item.id} className="p-4 border-b flex gap-3">
+            {item.images?.[0] ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={item.images[0]}
+                alt=""
+                className="w-12 h-12 rounded object-cover flex-shrink-0"
+              />
+            ) : (
+              <div className="w-12 h-12 rounded bg-gray-100 flex-shrink-0" />
+            )}
+            <div className="flex-1 min-w-0">
+              <p className="font-semibold truncate">{item.name}</p>
+              <p className="text-sm text-gray-500">{item.category?.name}</p>
+              <span
+                className={`inline-block mt-1 px-2 py-0.5 rounded text-xs font-medium ${
+                  item.published
+                    ? "bg-green-100 text-green-700"
+                    : "bg-gray-100 text-gray-500"
+                }`}
+              >
+                {item.published ? "Published" : "Draft"}
+              </span>
+            </div>
+            <div className="flex gap-2 items-start">
+              <Link href={`/admin/products/${item.id}/edit`}>
                 <Pencil size={20} />
-              </button>
-              <button onClick={() => handleDelete(item.id)} className="text-red-600">
+              </Link>
+              <button
+                onClick={() => handleDelete(item.id)}
+                className="text-red-600 cursor-pointer"
+              >
                 <Trash2 size={20} />
               </button>
             </div>
@@ -275,74 +224,28 @@ export default function ProductClient({ initialData }: any) {
 
       {/* PAGINATION */}
       <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-
         <p className="text-sm text-gray-600">
           Showing {startItem}-{endItem} of {filtered.length}
         </p>
-
         <div className="flex w-full sm:w-auto gap-2">
-            <button
-                onClick={() => setPage(p => p - 1)}
-                disabled={page === 1}
-                className="flex items-center justify-center gap-1 flex-1 sm:flex-none px-4 py-2 border rounded text-black font-medium hover:bg-gray-100 cursor-pointer disabled:opacity-40"
-                >
-                <ChevronLeft size={16} />
-                Previous
-            </button>
-
-            <button
-                onClick={() => setPage(p => p + 1)}
-                disabled={page === totalPages || totalPages === 0}
-                className="flex items-center justify-center gap-1 flex-1 sm:flex-none px-4 py-2 border rounded text-black font-medium hover:bg-gray-100 cursor-pointer disabled:opacity-40"
-                >
-                Next
-                <ChevronRight size={16} />
-            </button>
+          <button
+            onClick={() => setPage((p) => p - 1)}
+            disabled={page === 1}
+            className="flex items-center justify-center gap-1 flex-1 sm:flex-none px-4 py-2 border rounded text-black font-medium hover:bg-gray-100 cursor-pointer disabled:opacity-40"
+          >
+            <ChevronLeft size={16} />
+            Previous
+          </button>
+          <button
+            onClick={() => setPage((p) => p + 1)}
+            disabled={page === totalPages || totalPages === 0}
+            className="flex items-center justify-center gap-1 flex-1 sm:flex-none px-4 py-2 border rounded text-black font-medium hover:bg-gray-100 cursor-pointer disabled:opacity-40"
+          >
+            Next
+            <ChevronRight size={16} />
+          </button>
         </div>
-
       </div>
-
-      {open && (
-        <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50" onClick={() => setOpen(false)}>
-          <div className="bg-white p-6 rounded w-80 space-y-3" onClick={e => e.stopPropagation()}>
-            <h2>Add Product</h2>
-
-            <input value={name} onChange={e => setName(e.target.value)} className="border w-full p-2" />
-
-            <select value={categoryId} onChange={e => setCategoryId(e.target.value)} className="border w-full p-2">
-              <option value="">Select Category</option>
-              {categories.map(c => (
-                <option key={c.id} value={c.id}>{c.name}</option>
-              ))}
-            </select>
-
-            <button onClick={handleSubmit} className="bg-black text-white w-full py-2">
-              Save
-            </button>
-          </div>
-        </div>
-      )}
-
-      {editOpen && (
-        <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50" onClick={() => setEditOpen(false)}>
-          <div className="bg-white p-6 rounded w-80 space-y-3" onClick={e => e.stopPropagation()}>
-            <h2>Edit Product</h2>
-
-            <input value={name} onChange={e => setName(e.target.value)} className="border w-full p-2" />
-
-            <select value={categoryId} onChange={e => setCategoryId(e.target.value)} className="border w-full p-2">
-              {categories.map(c => (
-                <option key={c.id} value={c.id}>{c.name}</option>
-              ))}
-            </select>
-
-            <button onClick={handleUpdate} className="bg-black text-white w-full py-2">
-              Update
-            </button>
-          </div>
-        </div>
-      )}
-
     </div>
   )
 }

@@ -72,7 +72,9 @@ export function AppSidebar(props: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="pt-6 px-3 space-y-2">
 
         {menuItems.map((item) => {
-          const isActive = pathname === item.url
+          const isActive = item.url === "/admin"
+            ? pathname === "/admin"
+            : pathname.startsWith(item.url)
 
           const Icon = item.icon
 

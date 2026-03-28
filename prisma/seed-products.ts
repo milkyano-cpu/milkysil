@@ -3,6 +3,15 @@ import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
 
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .trim();
+}
+
 async function main() {
   // ================= CATEGORY =================
   const categories = [
@@ -185,8 +194,13 @@ async function main() {
     { name: "WASH BENSIN / SBP", categoryId: 7 },
   ];
 
+  const productsWithSlugs = products.map(p => ({
+    ...p,
+    slug: slugify(p.name),
+  }));
+
   await prisma.product.createMany({
-    data: products,
+    data: productsWithSlugs,
     skipDuplicates: true,
   });
 

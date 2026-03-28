@@ -4,14 +4,16 @@ import ProductClient from "./product-page"
 export const dynamic = "force-dynamic"
 
 export default async function Page() {
-    const products = await prisma.product.findMany({
+  const products = await prisma.product.findMany({
     include: {
-        category: true, 
+      category: {
+        select: { id: true, name: true },
+      },
     },
     orderBy: {
-        createdAt: "desc",
+      createdAt: "desc",
     },
-    })
+  })
 
-    return <ProductClient initialData={products} />
+  return <ProductClient initialData={JSON.parse(JSON.stringify(products))} />
 }

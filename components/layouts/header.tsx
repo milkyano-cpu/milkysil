@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { buttonVariants } from '../ui/button'
 import { cn } from '@/lib/utils'
+import { ChevronDown } from 'lucide-react'
 import {
   Sheet,
   SheetClose,
@@ -22,9 +23,17 @@ const navLinks = [
   { href: '/contact', label: 'Contact Us' },
 ]
 
+const productSubLinks = [
+  { href: '/milkysil/product', label: 'MilkySil' },
+  { href: '/milkyclean/product', label: 'MilkyClean' },
+  { href: '/trading/product', label: 'Trading & Distribution' },
+  { href: '/product', label: 'Other Products' },
+]
+
 const Header = () => {
   const [scrolled, setScrolled] = useState<boolean>(false)
   const [open, setOpen] = useState<boolean>(false)
+  const [productExpanded, setProductExpanded] = useState<boolean>(false)
   const pathname = usePathname()
 
   useEffect(() => {
@@ -36,9 +45,12 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // useEffect(() => {
-  //   setOpen(false)
-  // }, [pathname])
+  const isProductActive =
+    pathname === '/product' ||
+    pathname.startsWith('/product/') ||
+    pathname.startsWith('/milkysil/') ||
+    pathname.startsWith('/milkyclean/') ||
+    pathname.startsWith('/trading/')
 
   return (
     <header
@@ -63,6 +75,53 @@ const Header = () => {
         {/* Desktop nav */}
         <ul className="hidden md:flex h-[52.5px] items-center gap-8 text-primary text-lg font-normal">
           {navLinks.map(({ href, label }) => {
+            if (href === '/product') {
+              return (
+                <li key={href} className="relative group">
+                  <span
+                    className={`relative pb-3 transition-colors duration-300 ease-in-out hover:text-blue cursor-default ${
+                      isProductActive ? 'font-semibold' : ''
+                    }`}
+                  >
+                    {label}
+                    <ChevronDown className="inline w-4 h-4 ml-0.5 align-middle transition-transform group-hover:rotate-180" />
+                    <span
+                      className={`absolute bottom-0 left-1/2 -translate-x-1/2 block h-0 transition-all duration-300 ease-in-out ${
+                        isProductActive
+                          ? 'w-full scale-x-100 opacity-100'
+                          : 'w-full scale-x-0 opacity-0'
+                      }`}
+                      style={{ borderBottom: '1.35px solid #1674D3' }}
+                    />
+                  </span>
+
+                  {/* Invisible bridge to prevent hover gap */}
+                  <div className="absolute top-full left-0 h-3 w-full" />
+
+                  {/* Dropdown */}
+                  <div className="absolute top-[calc(100%+0.75rem)] left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out z-50">
+                    <div className="bg-white rounded-xl shadow-lg border py-2 min-w-[220px]">
+                      {productSubLinks.map((sub) => {
+                        const isSubActive = pathname === sub.href || pathname.startsWith(sub.href + '/')
+                        return (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className={cn(
+                              'block px-5 py-2.5 text-sm transition-colors hover:bg-gray-50 hover:text-blue',
+                              isSubActive ? 'text-blue font-semibold' : 'text-primary'
+                            )}
+                          >
+                            {sub.label}
+                          </Link>
+                        )
+                      })}
+                    </div>
+                  </div>
+                </li>
+              )
+            }
+
             const isActive = pathname === href
 
             return (
@@ -125,6 +184,48 @@ const Header = () => {
             </SheetHeader>
             <nav className="flex flex-col gap-2 px-4 mt-4">
               {navLinks.map(({ href, label }) => {
+                if (href === '/product') {
+                  return (
+                    <div key={href}>
+                      <button
+                        onClick={() => setProductExpanded(!productExpanded)}
+                        className={cn(
+                          'w-full flex items-center justify-between py-3 text-lg text-primary transition-colors hover:text-blue border-b border-gray-100 cursor-pointer',
+                          isProductActive && 'font-semibold text-blue'
+                        )}
+                      >
+                        {label}
+                        <ChevronDown
+                          className={cn(
+                            'w-5 h-5 transition-transform duration-200',
+                            productExpanded && 'rotate-180'
+                          )}
+                        />
+                      </button>
+                      {productExpanded && (
+                        <div className="pl-4 flex flex-col">
+                          {productSubLinks.map((sub) => {
+                            const isSubActive = pathname === sub.href || pathname.startsWith(sub.href + '/')
+                            return (
+                              <SheetClose asChild key={sub.href}>
+                                <Link
+                                  href={sub.href}
+                                  className={cn(
+                                    'py-2.5 text-base text-primary transition-colors hover:text-blue border-b border-gray-50',
+                                    isSubActive && 'font-semibold text-blue'
+                                  )}
+                                >
+                                  {sub.label}
+                                </Link>
+                              </SheetClose>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </div>
+                  )
+                }
+
                 const isActive = pathname === href
 
                 return (

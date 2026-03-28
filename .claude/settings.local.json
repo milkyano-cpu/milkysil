@@ -23,7 +23,13 @@
       "Bash(curl:*)",
       "Bash(curl -sL \"https://milkysil.com/assets/img/Blog-20260124013918.jpg\" -o caustic-soda.jpg)",
       "Bash(npm ls:*)",
-      "Bash(npm show:*)"
+      "Bash(npm show:*)",
+      "Bash(xargs:*)",
+      "Bash(tasklist:*)",
+      "Bash(npx next build:*)",
+      "Bash(pg_isready:*)",
+      "Bash(grep:*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }
