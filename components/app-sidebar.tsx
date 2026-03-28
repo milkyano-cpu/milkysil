@@ -7,6 +7,7 @@ import { useSidebar } from "@/components/ui/sidebar"
 
 import {
   LayoutDashboard,
+  Tags,
   Package,
   FileText,
 } from "lucide-react"
@@ -26,6 +27,12 @@ const menuItems = [
     url: "/admin",
     icon: LayoutDashboard,
     desc: "View overview",
+  },
+  {
+    title: "Categories",
+    url: "/admin/categories",
+    icon: Tags,
+    desc: "Manage categories",
   },
   {
     title: "Products",
