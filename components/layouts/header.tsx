@@ -64,14 +64,16 @@ const Header = () => {
       }`}
     >
       <nav className="w-full h-[87px] md:h-28 flex items-center justify-between px-9 md:px-50">
+      <Link href="/">
         <Image
           src="/milkysil-logo.svg"
           priority
           alt="logo"
           width={300}
           height={100}
-          className="w-[200px] md:w-[320px] h-auto"
+          className="w-[200px] md:w-[320px] h-auto cursor-pointer"
         />
+      </Link>
 
         {/* Desktop nav */}
         <ul className="hidden md:flex h-[52.5px] items-center gap-8 text-primary text-lg font-normal">
@@ -177,13 +179,15 @@ const Header = () => {
           <SheetContent side="right" className="flex flex-col">
             <SheetHeader>
               <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <Image
-                src="/milkysil-logo.svg"
-                alt="logo"
-                width={200}
-                height={100}
-                className="h-auto"
-              />
+              <Link href="/" onClick={() => setOpen(false)}>
+                <Image
+                  src="/milkysil-logo.svg"
+                  alt="logo"
+                  width={200}
+                  height={100}
+                  className="h-auto cursor-pointer"
+                />
+              </Link>
             </SheetHeader>
             <nav className="flex flex-col gap-2 px-4 mt-4">
               {navLinks.map(({ href, label }) => {

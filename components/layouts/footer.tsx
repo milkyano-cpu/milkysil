@@ -37,7 +37,8 @@ const Footer = () => {
 
                 {/* X */}
                 <a
-                    href="#"
+                    href="https://x.com/milkysil297"
+                    target="_blank"
                     className="w-9 h-9 border border-white/40 rounded-full flex items-center justify-center hover:bg-white hover:text-[#1E3E6D] transition"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
@@ -75,12 +76,29 @@ const Footer = () => {
         <h4 className="font-semibold mb-6 text-lg">Our Products</h4>
 
         <ul className="space-y-4 text-white/90 text-sm">
-            <li><Link href="/product?tab=general" className="hover:text-blue transition">General Chemicals</Link></li>
-            <li><Link href="/product?tab=water" className="hover:text-blue transition whitespace-nowrap">Water Treatment Chemicals</Link></li>
-            <li><Link href="/product?tab=fiberglass" className="hover:text-blue transition whitespace-nowrap">Fiberglass Materials</Link></li>
-            <li><Link href="/product?tab=silicone" className="hover:text-blue transition whitespace-nowrap">Silicone Emulsion</Link></li>
-            <li><Link href="/product?tab=household" className="hover:text-blue transition whitespace-nowrap">Household Chemicals</Link></li>
-            <li><Link href="/product?tab=flavour" className="hover:text-blue transition whitespace-nowrap">Food & Flavouring Ingredients</Link></li>
+            <li>
+            <Link href="/milkysil/product" className="hover:text-blue transition whitespace-nowrap">
+                MilkySil
+            </Link>
+            </li>
+
+            <li>
+            <Link href="/milkyclean/product" className="hover:text-blue transition whitespace-nowrap">
+                MilkyClean
+            </Link>
+            </li>
+
+            <li>
+            <Link href="/trading/product" className="hover:text-blue transition whitespace-nowrap">
+                Trading & Distribution
+            </Link>
+            </li>
+
+            <li>
+            <Link href="/product" className="hover:text-blue transition whitespace-nowrap">
+                Other Products
+            </Link>
+            </li>
         </ul>
         </div>
 

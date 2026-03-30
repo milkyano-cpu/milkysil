@@ -1,16 +1,39 @@
 "use client"
 
 import { MessageCircle } from "lucide-react"
+import { useEffect, useState } from "react"
 
 interface WhatsAppCTAProps {
   productName: string
   sticky?: boolean
 }
 
-const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER || "6281221aborneot"
-
 export default function WhatsAppCTA({ productName, sticky = false }: WhatsAppCTAProps) {
   const waNumber = process.env.NEXT_PUBLIC_WA_NUMBER
+
+  const [hide, setHide] = useState(false)
+
+  useEffect(() => {
+    if (!sticky) return
+
+    const handleScroll = () => {
+      const footer = document.querySelector("footer")
+      if (!footer) return
+
+      const footerTop = footer.getBoundingClientRect().top
+      const windowHeight = window.innerHeight
+
+      // kalau footer sudah dekat viewport → hide CTA
+      if (footerTop < windowHeight - 80) {
+        setHide(true)
+      } else {
+        setHide(false)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [sticky])
 
   const button = (
     <a
@@ -26,7 +49,14 @@ export default function WhatsAppCTA({ productName, sticky = false }: WhatsAppCTA
 
   if (sticky) {
     return (
-      <div className="fixed bottom-0 left-0 right-0 z-40 p-3 bg-white/90 backdrop-blur border-t md:hidden">
+      <div
+        className={`
+          fixed bottom-0 left-0 right-0 z-40 p-3 
+          md:hidden
+          transition-all duration-300
+          ${hide ? "hidden" : "block"}
+        `}
+      >
         {button}
       </div>
     )

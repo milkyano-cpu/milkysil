@@ -33,7 +33,7 @@ export default async function MilkyCleanProductDetail({ params }: Props) {
   const relatedProducts = await getRelatedProducts(product.id, product.categoryId, 4, "MILKYCLEAN")
 
   return (
-    <main className="bg-[#F7F9FC] min-h-screen pb-20 md:pb-20">
+    <main className="bg-[#F7F9FC] min-h-screen">
       <Header />
 
       <script
