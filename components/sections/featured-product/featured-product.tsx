@@ -20,7 +20,7 @@ const products = [
   },
   {
     name: "MilkyClean Glass Cleaner",
-    slug: "milkyclean-glass-cleaner",
+    slug: "milkyclean-glass-cleaner-1",
     desc: "Solusi pembersih kaca berkinerja tinggi yang diformulasikan untuk menghilangkan noda, debu, dan bekas sidik jari, sekaligus mengembalikan kilap jernih pada permukaan kaca.",
     image: "/product-featured1.png",
     mobileImage: "/product-mobile2.png",
@@ -32,7 +32,7 @@ const products = [
   },
   {
     name: "MilkyClean Floor Cleaner Apple",
-    slug: "milkyclean-floor-cleaner-apple",
+    slug: "milkyclean-floor-cleaner-apple-1",
     desc: "Solusi pembersih lantai dengan aroma apel segar yang diformulasikan untuk mengangkat noda, kotoran, dan debu, sekaligus memberikan kesegaran dan kilap pada lantai.",
     image: "/product-featured2.png",
     mobileImage: "/product-mobile3.png",
@@ -44,7 +44,7 @@ const products = [
   },
   {
     name: "MilkyClean Sabun Cuci Piring Jeruk Nipis",
-    slug: "milkyclean-sabun-cuci-piring-jeruk-nipis",
+    slug: "milkyclean-dishwashing-liquid-lime",
     desc: "Sabun cuci piring dengan ekstrak jeruk nipis yang efektif mengangkat lemak, sisa makanan, dan noda membandel, sekaligus memberikan aroma segar pada peralatan dapur.",
     image: "/product-featured3.png",
     mobileImage: "/product-mobile4.png",
@@ -68,7 +68,7 @@ const products = [
   },
   {
     name: "MilkyClean Carbol Sereh",
-    slug: "milkyclean-carbol-sereh",
+    slug: "milkyclean-carbol-sereh-1",
     desc: "Pembersih lantai dengan aroma sereh segar yang membantu membunuh kuman, mengangkat kotoran, serta menjaga lantai tetap bersih, higenis, dan harum.",
     image: "/product-featured5.png",
     mobileImage: "/product-mobile6.png",
@@ -80,7 +80,7 @@ const products = [
   },
   {
     name: "MilkyClean Shampoo Mobil",
-    slug: "milkyclean-shampoo-mobil",
+    slug: "milkyclean-car-shampoo",
     desc: "Shampoo mobil berkualitas tinggi untuk membersihkan kotoran, debu, dan noda pada kendaraan, sekaligus menjaga kilap cat mobil tetap bersih dan mengkilap.",
     image: "/product-featured6.png",
     mobileImage: "/product-mobile7.png",
@@ -224,7 +224,7 @@ const FeaturedProducts = () => {
                     <div className="flex flex-col gap-4">
 
                       <Link
-                        href={`/product/${item.slug}`}
+                        href={`/milkyclean/product/${item.slug}`}
                         className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium"
                       >
                         Lihat Detail Produk
@@ -279,7 +279,7 @@ const FeaturedProducts = () => {
                       <div className="flex gap-4">
 
                         <Link
-                          href={`/product/${item.slug}`}
+                          href={`/milkyclean/product/${item.slug}`}
                           className="bg-white text-[#1E3E6D] px-6 py-3 rounded-lg font-medium"
                         >
                           Lihat Detail Produk

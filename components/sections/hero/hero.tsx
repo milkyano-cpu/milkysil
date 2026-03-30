@@ -14,6 +14,7 @@ const slides = [
     image: "/heroo1.webp",
     mobileImage: "/hero-image-mobile.png",
     bgColor: "#E8F0FC",
+    slug: "milkyclean-glass-cleaner-1",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
@@ -21,6 +22,7 @@ const slides = [
     image: "/hero-image2.png",
     mobileImage: "/hero-image-mobile2.png",
     bgColor: "#E8F0FC",
+    slug: "milkyclean-handwash-strawberry",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
@@ -28,6 +30,7 @@ const slides = [
     image: "/hero-image3.png",
     mobileImage: "/hero-image-mobile3.png",
     bgColor: "#E8F0FC",
+    slug: "milkyclean-floor-cleaner-apple-1",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
@@ -35,6 +38,7 @@ const slides = [
     image: "/hero-image4.png",
     mobileImage: "/hero-image-mobile4.png",
     bgColor: "#E8F0FC",
+    slug: "milkyclean-dishwashing-liquid-lime",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
@@ -42,6 +46,7 @@ const slides = [
     image: "/hero-image5.png",
     mobileImage: "/hero-image-mobile5.png",
     bgColor: "#E8F0FC",
+    slug: "milkyclean-carbol-sereh-1",
   },
   {
     title: "Supplier Bahan Kimia Industri & Terpercaya di Indonesia",
@@ -49,6 +54,7 @@ const slides = [
     image: "/hero-image6.png",
     mobileImage: "/hero-image-mobile6.png",
     bgColor: "#E8F0FC",
+    slug: "milkyclean-car-shampoo",
   },
 ]
 
@@ -112,7 +118,7 @@ const Hero = () => {
                   </p>
 
                   <Link
-                    href="/products"
+                    href={`/milkyclean/product/${slide.slug}`}
                     className={`${cn(buttonVariants({ variant: "blue", size: "cta" }))}`}
                   >
                     Lihat Produk
