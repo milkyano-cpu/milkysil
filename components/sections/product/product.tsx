@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from "react"
-import { useRouter } from "next/navigation"
+import { useRouter, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -85,7 +85,7 @@ export default function ProductSection({
   categories: Category[]
 }) {
   const router = useRouter()
-  const [activeTab, setActiveTab] = useState(0)
+  const searchParams = useSearchParams()
 
   const tabKeys = [
     "fiberglass",
@@ -96,6 +96,9 @@ export default function ProductSection({
     "flavour",
     "others",
   ]
+
+  const initialTab = tabKeys.indexOf(searchParams.get("tab") || "")
+  const [activeTab, setActiveTab] = useState(initialTab >= 0 ? initialTab : 0)
 
   const categories = useMemo(
     () => buildCategories(serverData),
