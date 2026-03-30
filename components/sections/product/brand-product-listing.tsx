@@ -7,6 +7,37 @@ import { Search, ChevronLeft, ChevronRight } from "lucide-react"
 
 const ITEMS_PER_PAGE = 12
 
+const categoryIcons: Record<string, { icon: string; iconWhite: string }> = {
+  Fiberglass: {
+    icon: "/fence-icon.png",
+    iconWhite: "/fence-white-icon.png",
+  },
+  "General Chemicals": {
+    icon: "/chemical-icon.png",
+    iconWhite: "/chemical-white-icon.png",
+  },
+  "Water Treatment": {
+    icon: "/water-icon.png",
+    iconWhite: "/water-white-icon.png",
+  },
+  "Silicone Emulsion": {
+    icon: "/glue-icon.png",
+    iconWhite: "/glue-white-icon.png",
+  },
+  Household: {
+    icon: "/clean-icon.png",
+    iconWhite: "/clean-white-icon.png",
+  },
+  "Flavouring for Food & Tobacco": {
+    icon: "/food-icon.png",
+    iconWhite: "/food-white-icon.png",
+  },
+  Others: {
+    icon: "/other-icon.png",
+    iconWhite: "/other-white-icon.png",
+  },
+}
+
 type ProductItem = {
   id: number
   name: string
@@ -97,17 +128,29 @@ export default function BrandProductListing({
           >
             Semua
           </button>
-          {categories.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => handleCategoryChange(cat.id)}
-              className={`flex items-center justify-center gap-2 flex-shrink-0
-                px-6 h-[50px] rounded-lg font-medium shadow-md transition cursor-pointer text-sm
-                ${activeCategory === cat.id ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
-            >
-              {cat.name}
-            </button>
-          ))}
+          {categories.map((cat) => {
+            const icons = categoryIcons[cat.name]
+            return (
+              <button
+                key={cat.id}
+                onClick={() => handleCategoryChange(cat.id)}
+                className={`flex items-center justify-center gap-2 flex-shrink-0
+                  px-6 h-[50px] rounded-lg font-medium shadow-md transition cursor-pointer text-sm
+                  ${activeCategory === cat.id ? "bg-blue-600 text-white" : "bg-white text-gray-700 hover:bg-gray-100"}`}
+              >
+                {icons && (
+                  <Image
+                    src={activeCategory === cat.id ? icons.iconWhite : icons.icon}
+                    alt={cat.name}
+                    width={20}
+                    height={20}
+                    className="w-5 h-5 object-contain"
+                  />
+                )}
+                {cat.name}
+              </button>
+            )
+          })}
         </div>
       </div>
 
