@@ -182,21 +182,25 @@ export default function BrandProductListing({
                 href={`${basePath}/${product.slug}`}
                 className="group bg-white rounded-xl border overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
               >
-                <div className="relative aspect-square bg-gray-50">
-                  {product.images?.[0] ? (
-                    <Image
-                      src={product.images[0]}
-                      alt={product.name}
-                      fill
-                      className="object-contain p-4 rounded-t-xl"
-                      sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    />
-                  ) : (
-                    <div className="flex items-center justify-center h-full">
-                      <span className="text-gray-300 text-sm">No image</span>
-                    </div>
-                  )}
+                
+              <div className="relative aspect-square bg-gray-50">
+                <div className="absolute inset-0 p-4">
+                  <div className="relative w-full h-full rounded-xl overflow-hidden">
+                    {product.images?.[0] ? (
+                      <Image
+                        src={product.images[0]}
+                        alt={product.name}
+                        fill
+                        className="object-contain"
+                      />
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <span className="text-gray-300 text-sm">No image</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
+              </div>
 
                 <div className="p-4 space-y-2">
                   <span className="inline-block text-[11px] font-medium text-blue bg-blue/10 px-2 py-0.5 rounded-full">

@@ -50,16 +50,20 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
           <div ref={emblaRef} className="overflow-hidden h-full">
             <div className="flex h-full">
               {images.map((src, i) => (
-                <div key={i} className="flex-[0_0_100%] min-w-0 relative h-full">
-                  <Image
-                    src={src}
-                    alt={`${productName} - ${i + 1}`}
-                    fill
-                    className="object-contain p-4 rounded-t-xl"
-                    priority={i === 0}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+              <div key={i} className="flex-[0_0_100%] min-w-0 relative h-full">
+                <div className="absolute inset-0 p-4">
+                  <div className="relative w-full h-full rounded-xl overflow-hidden">
+                    <Image
+                      src={src}
+                      alt={`${productName} - ${i + 1}`}
+                      fill
+                      className="object-contain"
+                      priority={i === 0}
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
                 </div>
+              </div>
               ))}
             </div>
           </div>
