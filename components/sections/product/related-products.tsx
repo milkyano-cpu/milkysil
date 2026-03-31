@@ -23,20 +23,25 @@ export default function RelatedProducts({ products, basePath = "/product" }: Rel
             href={`${basePath}/${product.slug}`}
             className="group bg-white rounded-xl border overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all"
           >
+            
             <div className="relative aspect-square bg-gray-50">
-              {product.images?.[0] ? (
-                <Image
-                  src={product.images[0]}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-3"
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full">
-                  <span className="text-gray-300 text-xs">No image</span>
+              <div className="absolute inset-0 p-3">
+                <div className="relative w-full h-full rounded-xl overflow-hidden">
+                  {product.images?.[0] ? (
+                    <Image
+                      src={product.images[0]}
+                      alt={product.name}
+                      fill
+                      className="object-contain"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                  ) : (
+                    <div className="flex items-center justify-center h-full">
+                      <span className="text-gray-300 text-xs">No image</span>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
 
             <div className="p-3 space-y-1">
