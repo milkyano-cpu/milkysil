@@ -55,7 +55,7 @@ export default function ProductGallery({ images, productName }: ProductGalleryPr
                     src={src}
                     alt={`${productName} - ${i + 1}`}
                     fill
-                    className="object-contain p-4"
+                    className="object-contain p-4 rounded-t-xl"
                     priority={i === 0}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />

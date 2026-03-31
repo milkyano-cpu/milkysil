@@ -188,7 +188,7 @@ export default function BrandProductListing({
                       src={product.images[0]}
                       alt={product.name}
                       fill
-                      className="object-contain p-4"
+                      className="object-contain p-4 rounded-t-xl"
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
                   ) : (
