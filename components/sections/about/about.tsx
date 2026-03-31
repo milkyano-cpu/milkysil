@@ -18,6 +18,7 @@ const AboutSection = () => {
     { src: "/gallery4.png", title: "HANDSOAP STRAWBERRY" },
     { src: "/gallery5.png", title: "SHAMPOO MOBIL" },
     { src: "/gallery23.png", title: "CARBOL SEREH" },
+    { src: "/gallery24.png", title: "CARBOL SEREH" },
     { src: "/gallery6.png", title: "TIRE POLISH S CONCENTRATE 150 KG" },
     { src: "/gallery7.png", title: "TIRE POLISH 297LV" },
     { src: "/gallery8.png", title: "TIRE POLISH 297HV" },
