@@ -34,7 +34,7 @@ const categories = [
     link: "/product?tab=household",
   },
   {
-    title: "Food & Flavouring Ingredients",
+    title: "Tobacoo, Food & Flavouring Ingredients",
     desc: "Bahan kimia terpilih untuk aplikasi industri makanan dan minuman.",
     icon: "/food-icon.png",
     link: "/product?tab=flavour",
