@@ -11,16 +11,26 @@ function slugify(text: string): string {
     .trim();
 }
 
+// Category IDs from DB:
+// 1 = Fiberglass
+// 2 = General Chemicals
+// 3 = Water Treatment
+// 4 = Silicone Emulsion
+// 5 = Household
+// 6 = Flavouring for Food & Tobacco
+// 7 = Others
+
 interface TradingProduct {
   name: string;
   description: string;
   shortDescription: string;
   specifications: { key: string; value: string }[];
+  categoryId: number;
 }
 
 const tradingProducts: TradingProduct[] = [
   // ──────────────────────────────────────────────
-  // GENERAL CHEMICALS
+  // GENERAL CHEMICALS — categoryId: 2
   // ──────────────────────────────────────────────
   {
     name: "Aqua DM (Demineralized Water)",
@@ -38,6 +48,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "20 LT, 1 LT" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Cairan Mutiara (Pearlizing Agent)",
@@ -55,6 +66,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "50 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Calcium Chloride (CaCl2)",
@@ -72,6 +84,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Castor Oil (Minyak Jarak)",
@@ -88,6 +101,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "195 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Caustic Soda Flake 98.5%",
@@ -106,6 +120,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Defoamer",
@@ -122,6 +137,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "195 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Ferric Chloride Anhydrous (FeCl3)",
@@ -138,6 +154,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "50 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Hydrofluoric Acid (HF)",
@@ -155,6 +172,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "1 KG, 25 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Hydrogen Peroxide (H2O2)",
@@ -171,6 +189,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "35 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Isopropyl Alcohol (IPA)",
@@ -187,6 +206,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "200 LT, 1 LT" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Nitric Acid (HNO3)",
@@ -204,6 +224,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "35 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Nonylphenol Ethoxylate 6 (NP-6)",
@@ -220,6 +241,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "210 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Nonylphenol Ethoxylate 10 (NP-10)",
@@ -236,6 +258,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "210 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Nonylphenol Ethoxylate 15 (NP-15)",
@@ -252,6 +275,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "210 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Oleic Acid",
@@ -268,6 +292,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "190 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Perchloro Ethylene (PCE)",
@@ -284,6 +309,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "300 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Pine Oil",
@@ -301,6 +327,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "180 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Polyethylene Glycol 8000 (PEG 8000)",
@@ -317,6 +344,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Potassium Nitrate (KNO3)",
@@ -334,6 +362,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Silicone Oil 1000 CST",
@@ -352,6 +381,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "200 KG, 30 KG, 5 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Solvent P-334 Thinner Acetone",
@@ -368,6 +398,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "200 LT, 20 LT, 1 LT" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Solvent Thinner Toluene",
@@ -384,6 +415,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "200 LT, 1 LT" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Solvent Thinner Xylene",
@@ -400,6 +432,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "200 LT, 1 LT" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Stearic Acid 1842 (Triple Press)",
@@ -416,6 +449,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Texapon EMAL 270N - SLES",
@@ -432,6 +466,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "165 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Trichloroethylene (TCE) ASAHI China",
@@ -449,6 +484,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "280 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
   {
     name: "Trichloroethylene (TCE) ASAHI Jepang",
@@ -466,10 +502,11 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "290 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 2,
   },
 
   // ──────────────────────────────────────────────
-  // WATER TREATMENT CHEMICALS
+  // WATER TREATMENT CHEMICALS — categoryId: 3
   // ──────────────────────────────────────────────
   {
     name: "Manganese Greensand",
@@ -486,13 +523,14 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 3,
   },
   {
     name: "Poly Aluminium Chloride (PAC) China",
     description:
       "Poly Aluminium Chloride (PAC) China adalah bahan koagulan berbasis aluminium yang berfungsi untuk menggumpalkan partikel kotoran dalam air. Digunakan pada pengolahan air bersih, air limbah, dan industri untuk penjernihan air. Grade teknikal untuk pengolahan limbah.",
     shortDescription:
-      "Koagulan berbasis aluminium grade teknikal untuk penjernihan air bersih dan pengolahan air limbah industri.",
+      "Koagulan berbasis aluminium grade teknikal asal China untuk penjernihan air bersih dan pengolahan air limbah industri.",
     specifications: [
       { key: "Form", value: "Serbuk (Powder)" },
       { key: "Color", value: "Kuning" },
@@ -503,6 +541,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 3,
   },
   {
     name: "Poly Aluminium Chloride (PAC) Jepang",
@@ -521,6 +560,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Packaging", value: "Kemasan putih" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 3,
   },
   {
     name: "Poly Aluminium Chloride (PAC) Jerman",
@@ -540,10 +580,11 @@ const tradingProducts: TradingProduct[] = [
       { key: "Packaging", value: "Kemasan putih" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 3,
   },
 
   // ──────────────────────────────────────────────
-  // FIBERGLASS MATERIALS
+  // FIBERGLASS MATERIALS — categoryId: 1
   // ──────────────────────────────────────────────
   {
     name: "MAT 450 E-Glass",
@@ -561,6 +602,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "30 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 1,
   },
   {
     name: "Catalyst Mepoxe",
@@ -576,10 +618,11 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "20 KG (1 dus isi 4 jerigen @5 KG), 5 KG, 1 KG, 100 GR" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 1,
   },
 
   // ──────────────────────────────────────────────
-  // HOUSE HOLD
+  // HOUSE HOLD — categoryId: 5
   // ──────────────────────────────────────────────
   {
     name: "Lysol 100%",
@@ -596,6 +639,7 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "1 LT, 5 LT, 20 LT" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 5,
   },
   {
     name: "Detergent Powder",
@@ -611,10 +655,11 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG, 1 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 5,
   },
 
   // ──────────────────────────────────────────────
-  // TOBACCO, FOOD & FLAVOURING INGREDIENTS
+  // FLAVOURING FOR FOOD & TOBACCO — categoryId: 6
   // ──────────────────────────────────────────────
   {
     name: "Sodium Saccharin M",
@@ -632,11 +677,12 @@ const tradingProducts: TradingProduct[] = [
       { key: "Netto", value: "25 KG" },
       { key: "Stock Status", value: "Ready Stock" },
     ],
+    categoryId: 6,
   },
 ];
 
 async function main() {
-  console.log("Seeding Trading & Distribution products...");
+  console.log("Seeding Trading & Distribution products...\n");
 
   for (const product of tradingProducts) {
     const slug = slugify(product.name);
@@ -649,7 +695,7 @@ async function main() {
         shortDescription: product.shortDescription,
         specifications: product.specifications,
         productType: "TRADING",
-        categoryId: 3,
+        categoryId: product.categoryId,
         published: true,
         stockStatus: "IN_STOCK",
       },
@@ -660,16 +706,16 @@ async function main() {
         shortDescription: product.shortDescription,
         specifications: product.specifications,
         productType: "TRADING",
-        categoryId: 3,
+        categoryId: product.categoryId,
         published: true,
         stockStatus: "IN_STOCK",
       },
     });
 
-    console.log(`  Upserted: ${product.name}`);
+    console.log(`  ✓ [categoryId: ${product.categoryId}] ${product.name}`);
   }
 
-  console.log(`\nSeeded ${tradingProducts.length} Trading & Distribution products`);
+  console.log(`\nDone! Seeded ${tradingProducts.length} Trading & Distribution products.`);
 }
 
 main()
