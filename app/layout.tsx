@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { GoogleTagManager } from "@next/third-parties/google"
 
 const poppins = Poppins({subsets: ["latin"], weight:["400","500","600","700","800","900"], variable: "--font-poppins"});
 
@@ -45,6 +46,7 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${poppins.className} antialiased`}
       >
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ''} />
         {children}
         <Toaster richColors position="top-right" />
       </body>

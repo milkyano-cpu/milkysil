@@ -2,6 +2,7 @@
 
 import { MessageCircle } from "lucide-react"
 import { useEffect, useState } from "react"
+import { dataLayer } from "@/lib/gtm/data-layer"
 
 interface WhatsAppCTAProps {
   productName: string
@@ -40,6 +41,7 @@ export default function WhatsAppCTA({ productName, sticky = false }: WhatsAppCTA
       href={`https://wa.me/${waNumber}?text=Halo%20Milkysil%2C%20saya%20mengunjungi%20website%20Milkysil%20dan%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20produk%20yang%20tersedia.%20Mohon%20bantuannya.%20Terima%20kasih.`}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => dataLayer.whatsappCtaClick({ product_name: productName, placement: sticky ? "sticky" : "inline" })}
       className="flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe57] text-white font-semibold py-3 px-6 rounded-xl transition w-full shadow-lg"
     >
       <MessageCircle size={20} />

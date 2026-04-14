@@ -1,6 +1,7 @@
 import Link from "next/link"
 import ProductGallery from "@/components/sections/product/product-gallery"
 import WhatsAppCTA from "@/components/sections/product/whatsapp-cta"
+import ProductViewTracker from "@/components/sections/product/product-view-tracker"
 import RelatedProducts from "@/components/sections/product/related-products"
 import {
   Breadcrumb,
@@ -40,6 +41,14 @@ export default function ProductDetailContent({
 
   return (
     <>
+      <ProductViewTracker
+        productId={product.id}
+        productName={product.name}
+        productCategory={product.category.name}
+        productSlug={product.slug}
+        stockStatus={product.stockStatus}
+      />
+
       {/* BREADCRUMB */}
       <div className="max-w-[1100px] mx-auto px-4 md:px-6 mt-10 md:mt-16 mb-6">
         <Breadcrumb>

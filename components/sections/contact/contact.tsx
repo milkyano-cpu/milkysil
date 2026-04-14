@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { Mail, Phone, MapPin, Loader2 } from "lucide-react"
 import { z } from "zod"
 import { toast } from "sonner"
+import { dataLayer } from "@/lib/gtm/data-layer"
 
 const contactSchema = z.object({
   nama: z.string().min(1, "Nama wajib diisi"),
@@ -184,6 +185,9 @@ export default function ContactSection() {
 
       if (res.status === 201) {
         toast.success("Pesan berhasil dikirim!")
+        dataLayer.contactFormSubmit({
+          has_message: pesan.trim().length > 0,
+        })
         setNama("")
         setEmail("")
         setPesan("")
